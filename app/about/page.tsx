@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import Testimonials from "../components/testimonials/page";
+import { Testimonials } from "../components/testimonials/page"; // Updated import path
 import { FaAward, FaLeaf, FaUtensils, FaWineGlassAlt } from "react-icons/fa";
 import Footer from "../components/footer/page";
 import Navbar from "../components/navbar/page";
@@ -47,7 +47,6 @@ const AboutUs = () => {
                 </div>
               </div>
             </div>
-
 
             {/* Content Section */}
             <div className="lg:w-1/2">
@@ -127,7 +126,7 @@ const AboutUs = () => {
           </div>
 
           {/* Testimonials Section */}
-          <Testimonials placeId="your-place-id" />
+          <Testimonials placeId={process.env.NEXT_PUBLIC_GOOGLE_PLACE_ID || ''} />
         </div>
       </section>
 

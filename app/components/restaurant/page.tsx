@@ -1,7 +1,7 @@
 "use client";
 
-
 import { useState } from 'react';
+import Image from 'next/image';
 
 interface MenuItem {
   id: number;
@@ -42,7 +42,7 @@ const RestaurantMenu = () => {
       name: 'Bruschetta',
       description: 'Toasted bread with tomatoes, garlic and basil',
       price: 8.5,
-      image: 'https://example.com/bruschetta.jpg',
+      image: 'https://ik.imagekit.io/67mog36hf/Labrezi/bruschetta.jpg',
       category: 'Starters'
     },
     {
@@ -50,7 +50,7 @@ const RestaurantMenu = () => {
       name: 'Chocolate Lava Cake',
       description: 'Warm chocolate cake with a molten center',
       price: 9.9,
-      image: 'https://example.com/lava-cake.jpg',
+      image: 'https://ik.imagekit.io/67mog36hf/Labrezi/lava-cake.jpg',
       category: 'Desserts'
     },
     {
@@ -58,7 +58,7 @@ const RestaurantMenu = () => {
       name: 'Craft Cocktail',
       description: 'Seasonal ingredients with premium spirits',
       price: 12.0,
-      image: 'https://example.com/cocktail.jpg',
+      image: 'https://ik.imagekit.io/67mog36hf/Labrezi/cocktail.jpg',
       category: 'Drinks'
     }
   ];
@@ -98,16 +98,19 @@ const RestaurantMenu = () => {
   );
 
   return (
-    <section className="relative py-16 md:py-24 overflow-hidden">
-       
+    <section className="relative py-16 md:py-24 overflow-hidden bg-gray-900 min-h-screen">
       {/* Background Image with Overlay */}
-      <div className="absolute fixed inset-0 z-0">
-        {/* <img
+      <div className="absolute inset-0 z-0">
+        <Image
           src="https://ik.imagekit.io/67mog36hf/Labrezi/sergey-kotenev-l4U1u0bso6E-unsplash.jpg?updatedAt=1743519064678"
           alt="Restaurant background"
-          className="w-full h-full object-cover"
-        /> */}
-        <div className="absolute inset-0 bg-opacity-40"></div>
+          fill
+          className="object-cover"
+          priority
+          quality={80}
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-black bg-opacity-40"></div>
       </div>
 
       <div className="container mx-auto relative z-10 px-4 md:px-6">
@@ -148,11 +151,16 @@ const RestaurantMenu = () => {
                     key={item.id}
                     className="flex gap-4 p-4 border border-[#F6F0E5] rounded-lg bg-white hover:shadow-md transition-shadow"
                   >
-                    <img
-                      src={item.image}
-                      alt={item.name}
-                      className="w-20 h-20 rounded-lg object-cover flex-shrink-0"
-                    />
+                    <div className="relative w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
+                      <Image
+                        src={item.image}
+                        alt={item.name}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 80px, 100px"
+                        quality={75}
+                      />
+                    </div>
                     <div className="flex-1">
                       <div className="flex justify-between items-start">
                         <h3 className="font-bold text-[#4A3F36]">{item.name}</h3>
@@ -179,7 +187,7 @@ const RestaurantMenu = () => {
           </div>
 
           {/* Order Summary */}
-          <div className="lg:w-2/5">
+          <div className="lg:w-2/5 lg:sticky lg:top-24 h-fit">
             <div className="bg-[#F6F0E5] bg-opacity-90 backdrop-blur-sm p-6 rounded-lg shadow-lg">
               <h3 className="text-xl font-bold text-[#4A3F36] mb-4">Your Order</h3>
 
@@ -202,7 +210,7 @@ const RestaurantMenu = () => {
                             ${(item.price * item.quantity).toFixed(2)}
                           </span>
                           <button
-                            className="text-xs bg-gray-200 px-2 py-1 rounded hover:bg-gray-300"
+                            className="text-xs bg-gray-200 px-2 py-1 rounded hover:bg-gray-300 transition-colors"
                             onClick={() => removeFromOrder(item.id)}
                           >
                             Remove
@@ -215,19 +223,17 @@ const RestaurantMenu = () => {
               </div>
 
               {/* Order Total */}
-              <div
-                className={`border-t border-[#C49A6C] pt-4 ${
-                  orderItems.length === 0 ? 'hidden' : ''
-                }`}
-              >
-                <div className="flex justify-between font-bold text-lg mb-4">
-                  <span>Total:</span>
-                  <span>${totalAmount.toFixed(2)}</span>
+              {orderItems.length > 0 && (
+                <div className="border-t border-[#C49A6C] pt-4">
+                  <div className="flex justify-between font-bold text-lg mb-4">
+                    <span>Total:</span>
+                    <span>${totalAmount.toFixed(2)}</span>
+                  </div>
+                  <button className="w-full bg-[#A80532] text-white py-3 rounded hover:bg-[#800026] transition-colors">
+                    Proceed to Checkout
+                  </button>
                 </div>
-                <button className="w-full bg-[#A80532] text-white py-3 rounded hover:bg-[#800026] transition-colors">
-                  Proceed to Checkout
-                </button>
-              </div>
+              )}
             </div>
           </div>
         </div>

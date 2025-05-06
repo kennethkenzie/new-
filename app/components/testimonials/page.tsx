@@ -1,4 +1,4 @@
-// app/components/testimonials/Testimonials.tsx
+// app/testimonials/page.tsx
 "use client";
 
 import { FaGoogle, FaChevronLeft, FaChevronRight, FaStar } from "react-icons/fa";
@@ -12,21 +12,13 @@ interface GoogleReview {
   relative_time_description: string;
 }
 
-interface TestimonialProps {
-  placeId: string;
-  apiKey?: string;
-  autoRotate?: boolean;
-  rotateInterval?: number;
-  maxReviews?: number;
-}
+export default function TestimonialsPage() {
+  const placeId = "YOUR_PLACE_ID"; // Move this to environment variables
+  const apiKey = ""; // Move this to environment variables
+  const autoRotate = true;
+  const rotateInterval = 5000;
+  const maxReviews = 5;
 
-export const Testimonials = ({
-  placeId,
-  apiKey = "",
-  autoRotate = true,
-  rotateInterval = 5000,
-  maxReviews = 5
-}: TestimonialProps) => {
   const [reviews, setReviews] = useState<GoogleReview[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -184,4 +176,4 @@ export const Testimonials = ({
       </div>
     </div>
   );
-};
+}

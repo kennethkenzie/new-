@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import Image from 'next/image';
 
 const Footer = () => {
   return (
@@ -65,10 +66,24 @@ const Footer = () => {
             <div>
               <h3 className="font-bold tracking-widest text-[#4A3F36] uppercase mb-2">Follow Us</h3>
               <div className="flex space-x-4 text-xl">
-                <a href="#" className="hover:text-[#C46A26]"><img src="https://ik.imagekit.io/67mog36hf/Labrezi/icons/black-instagram-icon.svg?updatedAt=1745739881148" alt="Awards" className="h-10 object-contain" /></a>
-                <a href="#" className="hover:text-[#C46A26]"><img src="https://ik.imagekit.io/67mog36hf/Labrezi/icons/x-social-media-round-icon.svg" alt="Awards" className="h-10 object-contain" />
+                <a href="#" className="hover:text-[#C46A26]">
+                  <Image 
+                    src="https://ik.imagekit.io/67mog36hf/Labrezi/icons/black-instagram-icon.svg?updatedAt=1745739881148" 
+                    alt="Instagram" 
+                    width={40}
+                    height={40}
+                    className="h-10 w-auto object-contain"
+                  />
                 </a>
-          
+                <a href="#" className="hover:text-[#C46A26]">
+                  <Image 
+                    src="https://ik.imagekit.io/67mog36hf/Labrezi/icons/x-social-media-round-icon.svg" 
+                    alt="X (Twitter)" 
+                    width={40}
+                    height={40}
+                    className="h-10 w-auto object-contain"
+                  />
+                </a>
               </div>
             </div>
 
@@ -76,12 +91,25 @@ const Footer = () => {
             <div>
               <h3 className="font-bold tracking-widest text-[#4A3F36] uppercase mb-2">Awards</h3>
               <div className="flex flex-wrap items-center gap-2">
-
-                <div id="TA_rated579" className="TA_rated"><ul id="xSGUtK" className="TA_links JgHtu79"><li id="pCY3o7iM" className="XVe3GNcC9"><a target="_blank" href="https://www.tripadvisor.com/Hotel_Review-g293841-d27735080-Reviews-La_Brezi_Suites-Kampala_Central_Region.html"><img src="https://www.tripadvisor.com/img/cdsi/img2/badges/ollie-11424-2.gif" alt="TripAdvisor" /></a></li></ul></div><script async src="https://www.jscache.com/wejs?wtype=rated&amp;uniq=579&amp;locationId=27735080&amp;lang=en_US&amp;display_version=2" data-loadtrk onload="this.loadtrk=true"></script>
+                <div id="TA_rated579" className="TA_rated">
+                  <ul id="xSGUtK" className="TA_links JgHtu79">
+                    <li id="pCY3o7iM" className="XVe3GNcC9">
+                      <a target="_blank" rel="noopener noreferrer" href="https://www.tripadvisor.com/Hotel_Review-g293841-d27735080-Reviews-La_Brezi_Suites-Kampala_Central_Region.html">
+                        <Image 
+                          src="https://www.tripadvisor.com/img/cdsi/img2/badges/ollie-11424-2.gif" 
+                          alt="TripAdvisor" 
+                          width={100}
+                          height={50}
+                          className="h-auto w-auto"
+                        />
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <script async src="https://www.jscache.com/wejs?wtype=rated&amp;uniq=579&amp;locationId=27735080&amp;lang=en_US&amp;display_version=2" data-loadtrk onload="this.loadtrk=true"></script>
               </div>
             </div>
           </div>
-
         </div>
       </div>
 
@@ -99,13 +127,3 @@ const Footer = () => {
 }
 
 export default Footer;
-
-
-
-
-{/* Order Summary */}
-<div className="lg:w-2/5 lg:sticky lg:top-24 h-fit">
-  <div className="bg-[#F6F0E5] bg-opacity-90 backdrop-blur-sm p-6 rounded-lg shadow-lg">
-    {/* ...rest of your summary... */}
-  </div>
-</div>
