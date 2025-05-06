@@ -70,7 +70,7 @@ export default function DiningPage() {
 
   const culinaryExperiences = [
     {
-      title: "Chef's Table",
+      title: "Chef&apos;s Table",
       description: "An exclusive 8-course tasting menu prepared before your eyes at our kitchen counter",
       icon: "👨‍🍳"
     },
@@ -246,7 +246,7 @@ export default function DiningPage() {
                 Chef Marco brings his passion for seasonal ingredients and innovative techniques to La Brezi.
               </p>
               <button className="text-[#C46A26] hover:underline">
-                Read Chef's Bio →
+                Read Chef&apos;s Bio →
               </button>
             </div>
             <div className="md:w-2/3">

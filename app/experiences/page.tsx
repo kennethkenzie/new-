@@ -4,7 +4,7 @@ import React from "react";
 import Image from "next/image";
 import Navbar from "../components/navbar/page";
 import Footer from "../components/footer/page";
-import { FaSpa, FaUmbrellaBeach, FaSwimmingPool, FaWineGlassAlt, FaHiking, FaBicycle, FaConciergeBell } from "react-icons/fa";
+import { FaSpa, FaUmbrellaBeach, FaSwimmingPool, FaWineGlassAlt, FaHiking, FaConciergeBell } from "react-icons/fa";
 
 const ExperiencesPage = () => {
   const experiences = [

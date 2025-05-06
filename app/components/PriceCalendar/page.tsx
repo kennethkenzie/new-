@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { format, startOfMonth, endOfMonth, eachDayOfInterval, isSameMonth, isSameDay, addMonths } from 'date-fns';
+import { format, startOfMonth, endOfMonth, eachDayOfInterval, isSameDay, addMonths } from 'date-fns';
 
 const PriceCalendar = () => {
   const [currentMonth, setCurrentMonth] = useState(new Date(2025, 3, 1)); // April 2025

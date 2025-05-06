@@ -11,23 +11,17 @@ const nextConfig: NextConfig = {
         pathname: '/67mog36hf/Labrezi/**',
       },
     ],
-
     minimumCacheTTL: 60,
     formats: ['image/webp'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920],
   },
 
-  swcMinify: true,
+  // Remove the swcMinify line as it's no longer needed
   productionBrowserSourceMaps: false,
   experimental: {
-  optimizeCss: true,
-   scrollRestoration: true,
+    optimizeCss: true,
+    scrollRestoration: true,
   },
-  
 };
 
-
 export default withFlowbiteReact(nextConfig);
-
-
-

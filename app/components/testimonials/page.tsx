@@ -136,7 +136,7 @@ const Testimonials = ({
 
         {/* Review Text */}
         <p className="text-gray-300 italic text-center text-lg mb-6">
-          "{reviews[currentIndex].text}"
+          &quot;{reviews[currentIndex].text}&quot;
         </p>
 
         {/* Reviewer Info */}

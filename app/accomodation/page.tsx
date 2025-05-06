@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import Navbar from "../components/navbar/page";
 import Footer from "../components/footer/page";
+import Image from "next/image";
 import {
   FaUserFriends,
   FaWifi,
@@ -13,7 +14,6 @@ import {
   FaShower,
 } from "react-icons/fa";
 
-// Filter categories
 const categories = [
   { label: "View All", value: "all" },
   { label: "Single Room", value: "single" },
@@ -30,12 +30,12 @@ const AccommodationPage = () => {
   useEffect(() => {
     const fetchAvailableRooms = async () => {
       try {
-        const checkIn = searchParams.get('checkIn');
-        const checkOut = searchParams.get('checkOut');
-        const adults = searchParams.get('adults');
-        const children = searchParams.get('children');
-        
-        let apiUrl = '/api/rooms/availability';
+        const checkIn = searchParams.get("checkIn");
+        const checkOut = searchParams.get("checkOut");
+        const adults = searchParams.get("adults");
+        const children = searchParams.get("children");
+
+        let apiUrl = "/api/rooms/availability";
         if (checkIn && checkOut) {
           apiUrl += `?checkIn=${checkIn}&checkOut=${checkOut}&adults=${adults}&children=${children}`;
         }
@@ -44,7 +44,7 @@ const AccommodationPage = () => {
         const data = await response.json();
         setRooms(data.availableRooms || []);
       } catch (error) {
-        console.error('Error fetching rooms:', error);
+        console.error("Error fetching rooms:", error);
       } finally {
         setLoading(false);
       }
@@ -53,40 +53,42 @@ const AccommodationPage = () => {
     fetchAvailableRooms();
   }, [searchParams]);
 
-  const filteredRooms = selectedCategory === "all"
-    ? rooms
-    : rooms.filter((room) => room.category === selectedCategory);
+  const filteredRooms =
+    selectedCategory === "all"
+      ? rooms
+      : rooms.filter((room) => room.category === selectedCategory);
 
   return (
     <section className="bg-white min-h-screen">
       <Navbar />
 
-      {/* Page Header with Fixed Background */}
       <div
         className="relative w-full h-64 md:h-150 bg-fixed bg-cover bg-center flex items-center justify-center"
         style={{
-          backgroundImage: "url('https://ik.imagekit.io/67mog36hf/Labrezi/MYC_8072.jpg?updatedAt=1731996861554')",
+          backgroundImage:
+            "url('https://ik.imagekit.io/67mog36hf/Labrezi/MYC_8072.jpg?updatedAt=1731996861554')",
         }}
       >
-        {/* Dark Overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-black/30"></div>
-
-        {/* Text Content */}
         <div className="relative z-10 text-center text-white">
-          <h1 className="text-3xl md:text-5xl font-bold uppercase">Our Rooms & Suites</h1>
-          <p className="mt-2 text-sm md:text-base">Comfort. Elegance. Space to Unwind.</p>
+          <h1 className="text-3xl md:text-5xl font-bold uppercase">
+            Our Rooms & Suites
+          </h1>
+          <p className="mt-2 text-sm md:text-base">
+            Comfort. Elegance. Space to Unwind.
+          </p>
         </div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 py-16">
-        {/* Intro */}
         <div className="text-center max-w-3xl mx-auto mb-10">
           <p className="text-[#4A3F36] text-lg leading-relaxed">
-            Experience comfort and convenience in our range of hotel accommodations. From cozy single rooms to spacious executive suites, enjoy elegance and thoughtful design in every stay.
+            Experience comfort and convenience in our range of hotel
+            accommodations. From cozy single rooms to spacious executive suites,
+            enjoy elegance and thoughtful design in every stay.
           </p>
         </div>
 
-        {/* Category Filter */}
         <div className="flex flex-wrap justify-center gap-4 border-b border-[#F6F0E5] pb-6 mb-10">
           {categories.map((cat) => (
             <button
@@ -109,28 +111,32 @@ const AccommodationPage = () => {
           </div>
         ) : filteredRooms.length === 0 ? (
           <div className="text-center py-12">
-            <p className="text-lg text-[#4A3F36]">No rooms available for the selected dates.</p>
-            <p className="text-sm text-[#4A3F36]/70 mt-2">Please try different dates or adjust your search criteria.</p>
+            <p className="text-lg text-[#4A3F36]">
+              No rooms available for the selected dates.
+            </p>
+            <p className="text-sm text-[#4A3F36]/70 mt-2">
+              Please try different dates or adjust your search criteria.
+            </p>
           </div>
         ) : (
-          /* Room Cards */
           <div className="space-y-16">
             {filteredRooms.map((room, idx) => (
               <div
                 key={idx}
                 className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col lg:flex-row max-w-6xl mx-auto border border-[#F6F0E5]"
               >
-                {/* Text Section */}
                 <div className="w-full lg:w-1/2 p-8 space-y-4">
                   <p className="text-[#C49A6C] font-semibold text-sm">
-                    UGX {room.price?.toLocaleString() || '80,000'} / Night
+                    UGX {room.price?.toLocaleString() || "80,000"} / Night
                   </p>
-                  <h2 className="text-2xl font-bold text-[#4A3F36]">{room.name}</h2>
+                  <h2 className="text-2xl font-bold text-[#4A3F36]">
+                    {room.name}
+                  </h2>
                   <p className="text-[#4A3F36]/80 text-sm">
-                    {room.description || `Detailed Description of ${room.name}. General overview of size and amenities offered for your comfort.`}
+                    {room.description ||
+                      `Detailed Description of ${room.name}. General overview of size and amenities offered for your comfort.`}
                   </p>
 
-                  {/* Features */}
                   <div className="grid grid-cols-3 gap-4 pt-4 text-sm text-[#4A3F36]">
                     <div className="flex items-center space-x-2">
                       <FaUserFriends className="text-[#C49A6C]" />
@@ -142,7 +148,7 @@ const AccommodationPage = () => {
                     </div>
                     <div className="flex items-center space-x-2">
                       <FaBed className="text-[#C49A6C]" />
-                      <span>{room.bedType || 'Comfortable bed'}</span>
+                      <span>{room.bedType || "Comfortable bed"}</span>
                     </div>
                     <div className="flex items-center space-x-2">
                       <FaUtensils className="text-[#C49A6C]" />
@@ -150,7 +156,7 @@ const AccommodationPage = () => {
                     </div>
                     <div className="flex items-center space-x-2">
                       <FaRulerCombined className="text-[#C49A6C]" />
-                      <span>{room.size || 'Spacious room'}</span>
+                      <span>{room.size || "Spacious room"}</span>
                     </div>
                     <div className="flex items-center space-x-2">
                       <FaShower className="text-[#C49A6C]" />
@@ -158,7 +164,6 @@ const AccommodationPage = () => {
                     </div>
                   </div>
 
-                  {/* CTA */}
                   <div className="flex items-center justify-between pt-6">
                     <a
                       href="#"
@@ -166,24 +171,24 @@ const AccommodationPage = () => {
                     >
                       DETAILS →
                     </a>
-                    <button 
+                    <button
                       className="bg-[#A80532] text-white px-6 py-2 uppercase text-sm tracking-wider hover:bg-[#8A0425] transition-colors"
-                      onClick={() => {
-                        // You can add booking logic here or link to booking page
-                        // with pre-filled dates from searchParams
-                      }}
                     >
                       Book Now
                     </button>
                   </div>
                 </div>
 
-                {/* Image Section */}
-                <div className="w-full lg:w-1/2 h-80 lg:h-auto">
-                  <img
-                    src={room.images?.[0] || "https://ik.imagekit.io/67mog36hf/Labrezi/LABREZI_SUITES_a1.png?updatedAt=1731996616563"}
+                <div className="w-full lg:w-1/2 h-80 lg:h-auto relative">
+                  <Image
+                    src={
+                      room.images?.[0] ||
+                      "https://ik.imagekit.io/67mog36hf/Labrezi/LABREZI_SUITES_a1.png?updatedAt=1731996616563"
+                    }
                     alt={room.name}
-                    className="w-full h-full object-cover"
+                    fill
+                    className="object-cover"
+                    unoptimized
                   />
                 </div>
               </div>

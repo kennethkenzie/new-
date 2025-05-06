@@ -18,16 +18,7 @@ const Footer = dynamic(() => import('../components/footer/page'), {
 
 const BlogPage = () => {
   // Memoized data for better performance
-  const { colors, blogPosts, categories } = useMemo(() => ({
-    colors: {
-      darkMossGreen: "#55652E",
-      darkMossGreenDarker: "#445026",
-      caramel: "#CB7E4D",
-      buff: "#D89D78",
-      seashell: "#F7EBE4",
-      paleDogwood: "#ECCFBE",
-      white: "#FFFFFF"
-    },
+  const { blogPosts, categories } = useMemo(() => ({
     blogPosts: [
       {
         id: 1,

@@ -44,6 +44,8 @@ const BookingCalendar = () => {
 
   // Helper functions
   const formatCurrency = (amount) => `$${amount.toLocaleString()}`;
+  
+  // Calculate total nights if needed (now used in the search button text)
   const totalNights = checkInDate && checkOutDate ? differenceInDays(checkOutDate, checkInDate) : 0;
 
   const handleDateSelection = (day) => {
@@ -262,13 +264,13 @@ const BookingCalendar = () => {
         </div>
       </div>
 
-      {/* Search Button */}
+      {/* Search Button - Now shows total nights when dates are selected */}
       <button
         type="button"
         className="w-full bg-[#A80532] hover:bg-[#8A0425] text-white font-bold py-3 px-6 rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-[#C49A6C] focus:ring-offset-2"
         aria-label="Search available bookings"
       >
-        SEARCH
+        {totalNights > 0 ? `SEARCH (${totalNights} ${totalNights === 1 ? 'night' : 'nights'})` : 'SEARCH'}
       </button>
     </div>
   );
