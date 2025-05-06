@@ -127,7 +127,7 @@ const AboutUs = () => {
           </div>
 
           {/* Testimonials Section */}
-          <Testimonials />
+          <Testimonials placeId="your-place-id" />
         </div>
       </section>
 

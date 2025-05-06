@@ -86,7 +86,7 @@ export default function SustainabilityPage() {
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl font-bold text-[#4A3F36] mb-6">Our Sustainability Commitment</h2>
           <p className="text-lg text-[#4A3F36] mb-8">
-            At La Brezi Suites, we believe true luxury must be sustainable. We've integrated environmental responsibility 
+            At La Brezi Suites, we believe true luxury must be sustainable. We&apos;ve integrated environmental responsibility 
             into every aspect of our operations, from energy-efficient design to community partnerships that promote 
             ecological preservation. Our goal is to provide an exceptional guest experience while protecting the natural 
             beauty that makes our location so special.
@@ -236,3 +236,5 @@ export default function SustainabilityPage() {
     </>
   );
 }
+
+
