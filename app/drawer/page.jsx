@@ -2,7 +2,12 @@
 
 import { useEffect, useState } from "react";
 
-const BookingDrawer = ({ bookingFormOpen, toggleBookingForm }) => {
+interface BookingDrawerProps {
+  bookingFormOpen: boolean;
+  toggleBookingForm: () => void;
+}
+
+const BookingDrawer = ({ bookingFormOpen, toggleBookingForm }: BookingDrawerProps) => {
   const [selectedDate, setSelectedDate] = useState("02/25/2024");
 
   useEffect(() => {
@@ -30,6 +35,7 @@ const BookingDrawer = ({ bookingFormOpen, toggleBookingForm }) => {
         <button
           onClick={toggleBookingForm}
           className="text-2xl text-gray-600 hover:text-gray-900"
+          aria-label="Close booking drawer"
         >
           &times;
         </button>
@@ -37,7 +43,6 @@ const BookingDrawer = ({ bookingFormOpen, toggleBookingForm }) => {
 
       {/* Drawer Body */}
       <div className="p-6 overflow-y-auto h-full space-y-6">
-
         {/* Dates Section */}
         <div>
           <h4 className="text-sm font-semibold mb-2 text-[#4A3F36] uppercase">Dates</h4>
@@ -45,7 +50,6 @@ const BookingDrawer = ({ bookingFormOpen, toggleBookingForm }) => {
           {/* Input Field */}
           <div className="relative max-w-full mb-4">
             <div className="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
-              {/* Calendar Icon */}
               <svg
                 className="w-4 h-4 text-gray-500"
                 aria-hidden="true"
@@ -63,18 +67,38 @@ const BookingDrawer = ({ bookingFormOpen, toggleBookingForm }) => {
               readOnly
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#C46A26] focus:border-[#C46A26] block w-full pl-10 p-2.5"
               placeholder="Select date"
+              aria-label="Selected date"
             />
           </div>
 
           {/* Inline Calendar */}
-          <div id="datepicker-inline" data-date={selectedDate} data-inline="true"></div>       
-           </div>
-
-        {/* (continue your Guests, Special Rates sections below...) */}
-
+          <div id="datepicker-inline" data-date={selectedDate} data-inline="true"></div>
+        </div>
       </div>
     </div>
   );
 };
 
-export default BookingDrawer;
+// Default export for the page
+export default function Page() {
+  const [bookingFormOpen, setBookingFormOpen] = useState(false);
+
+  const toggleBookingForm = () => {
+    setBookingFormOpen(!bookingFormOpen);
+  };
+
+  return (
+    <div>
+      {/* Your main page content */}
+      <button onClick={toggleBookingForm} className="bg-blue-500 text-white p-2 rounded">
+        Open Booking Drawer
+      </button>
+      
+      {/* Render the BookingDrawer component */}
+      <BookingDrawer 
+        bookingFormOpen={bookingFormOpen} 
+        toggleBookingForm={toggleBookingForm} 
+      />
+    </div>
+  );
+}
