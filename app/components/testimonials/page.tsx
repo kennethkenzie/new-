@@ -1,3 +1,4 @@
+// app/components/testimonials/Testimonials.tsx
 "use client";
 
 import { FaGoogle, FaChevronLeft, FaChevronRight, FaStar } from "react-icons/fa";
@@ -13,13 +14,13 @@ interface GoogleReview {
 
 interface TestimonialProps {
   placeId: string;
-  apiKey?: string; // Optional for client-side (not recommended for production)
+  apiKey?: string;
   autoRotate?: boolean;
   rotateInterval?: number;
   maxReviews?: number;
 }
 
-const Testimonials = ({
+export const Testimonials = ({
   placeId,
   apiKey = "",
   autoRotate = true,
@@ -36,18 +37,12 @@ const Testimonials = ({
   useEffect(() => {
     const fetchGoogleReviews = async () => {
       try {
-        // In production, replace this with a call to your own API endpoint
-        const response = await fetch(
-          `/api/reviews?placeId=${placeId}`
-          // For demo only (client-side fetching not recommended):
-          // `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=reviews&key=${apiKey}`
-        );
+        const response = await fetch(`/api/reviews?placeId=${placeId}`);
         
         if (!response.ok) throw new Error('Failed to fetch reviews');
         
         const data = await response.json();
         const fetchedReviews = data.result?.reviews || data.reviews || [];
-        
         setReviews(fetchedReviews.slice(0, maxReviews));
       } catch (err) {
         setError(err instanceof Error ? err.message : String(err));
@@ -67,7 +62,6 @@ const Testimonials = ({
     setCurrentIndex((prev) => (prev - 1 + reviews.length) % reviews.length);
   };
 
-  // Auto-rotate if enabled and there are multiple reviews
   useEffect(() => {
     if (autoRotate && reviews.length > 1) {
       const interval = setInterval(() => {
@@ -122,9 +116,7 @@ const Testimonials = ({
 
   return (
     <div className="relative max-w-4xl mx-auto">
-      {/* Review Card */}
       <div className="bg-white bg-opacity-10 p-8 rounded-lg backdrop-blur-sm min-h-64 flex flex-col justify-center transition-all duration-500 hover:bg-opacity-20">
-        {/* Stars */}
         <div className="flex justify-center mb-4">
           {[...Array(5)].map((_, i) => (
             <FaStar 
@@ -134,12 +126,10 @@ const Testimonials = ({
           ))}
         </div>
 
-        {/* Review Text */}
         <p className="text-gray-300 italic text-center text-lg mb-6">
           &quot;{reviews[currentIndex].text}&quot;
         </p>
 
-        {/* Reviewer Info */}
         <div className="text-center">
           <div className="text-[#C49A6C] font-bold">
             {reviews[currentIndex].author_name}
@@ -151,7 +141,6 @@ const Testimonials = ({
         </div>
       </div>
 
-      {/* Navigation Arrows */}
       {reviews.length > 1 && (
         <>
           <button 
@@ -169,7 +158,6 @@ const Testimonials = ({
             <FaChevronRight className="text-white" />
           </button>
 
-          {/* Dots Indicator */}
           <div className="flex justify-center mt-6 gap-2">
             {reviews.map((_, index) => (
               <button
@@ -183,7 +171,6 @@ const Testimonials = ({
         </>
       )}
 
-      {/* Google Link */}
       <div className="text-center mt-8">
         <a 
           href={googleBusinessProfileUrl} 
@@ -198,5 +185,3 @@ const Testimonials = ({
     </div>
   );
 };
-
-export default Testimonials;
