@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist } from "next/font/google";
 import "./globals.css";
-import { SpeedInsights } from "@vercel/speed-insights/next"
 
 // app/layout.tsx
 import { ThemeModeScript } from 'flowbite-react';
@@ -11,10 +10,7 @@ const geistSans = Geist({
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+// Removed unused geistMono declaration
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -27,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html suppressHydrationWarning>
+    <html suppressHydrationWarning className={geistSans.variable}>
     <head>
         <ThemeModeScript />
     </head>

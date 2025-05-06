@@ -133,7 +133,7 @@ const SafarisPage = () => {
           <div className="text-center mb-12 md:mb-16">
             <h2 className="text-2xl md:text-4xl font-bold text-[#4A3F36] mb-4">Curated Safari Experiences</h2>
             <p className="text-lg text-[#4A3F36] max-w-3xl mx-auto">
-              From half-day adventures to multi-day immersions, discover Africa's wildlife with our expert-guided safaris.
+              From half-day adventures to multi-day immersions, discover Africa&apos;s wildlife with our expert-guided safaris.
             </p>
           </div>
 
@@ -231,7 +231,7 @@ const SafarisPage = () => {
                 </div>
               </div>
               <p className="text-[#4A3F36]">
-                "Our guide spotted a leopard within 15 minutes of entering the park! The entire experience was perfectly organized, and the bush lunch was gourmet quality. Worth every shilling!"
+                &quot;Our guide spotted a leopard within 15 minutes of entering the park! The entire experience was perfectly organized, and the bush lunch was gourmet quality. Worth every shilling!&quot;
               </p>
             </div>
             
@@ -244,7 +244,7 @@ const SafarisPage = () => {
                 </div>
               </div>
               <p className="text-[#4A3F36]">
-                "As a photography enthusiast, the specialized vehicle and guidance from the photographer guide helped me capture my best wildlife shots ever. The editing workshop was an unexpected bonus!"
+                &quot;As a photography enthusiast, the specialized vehicle and guidance from the photographer guide helped me capture my best wildlife shots ever. The editing workshop was an unexpected bonus!&quot;
               </p>
             </div>
           </div>

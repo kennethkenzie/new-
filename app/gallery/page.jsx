@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import Navbar from "../components/Navbar/page";
-import Footer from "../components/Footer/page";
+import Navbar from "../components/navbar/page";
+import Footer from "../components/footer/page";
 
 const Gallery = () => {
   const images = [
