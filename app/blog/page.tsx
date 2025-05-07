@@ -5,6 +5,23 @@ import Image from "next/image";
 import dynamic from 'next/dynamic';
 import { FaCalendarAlt, FaUser, FaArrowRight, FaSearch } from "react-icons/fa";
 
+// Type definitions
+type BlogPost = {
+  id: number;
+  title: string;
+  excerpt: string;
+  date: string;
+  author: string;
+  category: string;
+  image: string;
+  readTime: string;
+};
+
+type Category = {
+  name: string;
+  count: number;
+};
+
 // Lazy load components
 const Navbar = dynamic(() => import('../components/navbar/page'), {
   loading: () => <div className="h-16 bg-[#55652E]" />,
@@ -30,11 +47,34 @@ const BlogPage = () => {
         image: "https://ik.imagekit.io/67mog36hf/Labrezi/IMG_3711.JPG?updatedAt=1746112307767",
         readTime: "5 min read"
       },
-      // ... other blog posts
-    ],
+      {
+        id: 2,
+        title: "Exploring Uganda's Hidden Gems",
+        excerpt: "Discover the lesser-known treasures of our beautiful country.",
+        date: "July 22, 2023",
+        author: "Sarah Kintu",
+        category: "Travel Tips",
+        image: "https://ik.imagekit.io/67mog36hf/Labrezi/IMG_3712.JPG?updatedAt=1746112307767",
+        readTime: "7 min read"
+      },
+      {
+        id: 3,
+        title: "The Secret Behind Our Farm-to-Table Cuisine",
+        excerpt: "How we source the freshest ingredients from local farmers.",
+        date: "August 5, 2023",
+        author: "David Mugisha",
+        category: "Culinary",
+        image: "https://ik.imagekit.io/67mog36hf/Labrezi/IMG_3713.JPG?updatedAt=1746112307767",
+        readTime: "4 min read"
+      }
+    ] as BlogPost[],
     categories: [
-      // ... categories array
-    ]
+      { name: "Sustainability", count: 5 },
+      { name: "Travel Tips", count: 3 },
+      { name: "Local Culture", count: 7 },
+      { name: "Culinary", count: 4 },
+      { name: "Wellness", count: 2 }
+    ] as Category[]
   }), []);
 
   return (
