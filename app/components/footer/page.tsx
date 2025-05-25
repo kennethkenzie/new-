@@ -1,7 +1,8 @@
 "use client";
 
-import React from 'react';
-import Image from 'next/image';
+import React from "react";
+import Image from "next/image";
+import Script from "next/script"; // ✅ Import Script from next/script
 
 const Footer = () => {
   return (
@@ -15,7 +16,9 @@ const Footer = () => {
       <div className="container mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-10">
         {/* Contact Details */}
         <div className="space-y-4 text-sm">
-          <h3 className="font-bold tracking-widest text-[#4A3F36] uppercase">Contact Details</h3>
+          <h3 className="font-bold tracking-widest text-[#4A3F36] uppercase">
+            Contact Details
+          </h3>
           <div>
             <p>La Brezi Suites</p>
             <p>Sonde Misindye Jinja Kampala, Uganda</p>
@@ -28,7 +31,9 @@ const Footer = () => {
 
         {/* La Brezi Links */}
         <div className="space-y-4 text-sm">
-          <h3 className="font-bold tracking-widest text-[#4A3F36] uppercase">La brezi suites sonde</h3>
+          <h3 className="font-bold tracking-widest text-[#4A3F36] uppercase">
+            La brezi suites sonde
+          </h3>
           <div className="grid grid-cols-2 gap-2">
             <a href="#" className="hover:underline">Sustainability</a>
             <a href="#" className="hover:underline">Travel Agents</a>
@@ -47,12 +52,14 @@ const Footer = () => {
         <div className="space-y-6 text-sm">
           {/* Newsletter */}
           <div>
-            <h3 className="font-bold tracking-widest text-[#4A3F36] uppercase mb-2">Subscribe to our newsletter</h3>
+            <h3 className="font-bold tracking-widest text-[#4A3F36] uppercase mb-2">
+              Subscribe to our newsletter
+            </h3>
             <div className="flex">
-              <input 
-                type="email" 
-                placeholder="Email Address" 
-                className="border border-[#4A3F36] px-4 py-2 w-full focus:outline-none" 
+              <input
+                type="email"
+                placeholder="Email Address"
+                className="border border-[#4A3F36] px-4 py-2 w-full focus:outline-none"
               />
               <button className="bg-transparent border border-[#4A3F36] px-4">
                 →
@@ -64,21 +71,23 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
             {/* Social Media */}
             <div>
-              <h3 className="font-bold tracking-widest text-[#4A3F36] uppercase mb-2">Follow Us</h3>
+              <h3 className="font-bold tracking-widest text-[#4A3F36] uppercase mb-2">
+                Follow Us
+              </h3>
               <div className="flex space-x-4 text-xl">
                 <a href="#" className="hover:text-[#C46A26]">
-                  <Image 
-                    src="https://ik.imagekit.io/67mog36hf/Labrezi/icons/black-instagram-icon.svg?updatedAt=1745739881148" 
-                    alt="Instagram" 
+                  <Image
+                    src="https://ik.imagekit.io/67mog36hf/Labrezi/icons/black-instagram-icon.svg?updatedAt=1745739881148"
+                    alt="Instagram"
                     width={40}
                     height={40}
                     className="h-10 w-auto object-contain"
                   />
                 </a>
                 <a href="#" className="hover:text-[#C46A26]">
-                  <Image 
-                    src="https://ik.imagekit.io/67mog36hf/Labrezi/icons/x-social-media-round-icon.svg" 
-                    alt="X (Twitter)" 
+                  <Image
+                    src="https://ik.imagekit.io/67mog36hf/Labrezi/icons/x-social-media-round-icon.svg"
+                    alt="X (Twitter)"
                     width={40}
                     height={40}
                     className="h-10 w-auto object-contain"
@@ -89,15 +98,21 @@ const Footer = () => {
 
             {/* Awards */}
             <div>
-              <h3 className="font-bold tracking-widest text-[#4A3F36] uppercase mb-2">Awards</h3>
+              <h3 className="font-bold tracking-widest text-[#4A3F36] uppercase mb-2">
+                Awards
+              </h3>
               <div className="flex flex-wrap items-center gap-2">
                 <div id="TA_rated579" className="TA_rated">
                   <ul id="xSGUtK" className="TA_links JgHtu79">
                     <li id="pCY3o7iM" className="XVe3GNcC9">
-                      <a target="_blank" rel="noopener noreferrer" href="https://www.tripadvisor.com/Hotel_Review-g293841-d27735080-Reviews-La_Brezi_Suites-Kampala_Central_Region.html">
-                        <Image 
-                          src="https://www.tripadvisor.com/img/cdsi/img2/badges/ollie-11424-2.gif" 
-                          alt="TripAdvisor" 
+                      <a
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        href="https://www.tripadvisor.com/Hotel_Review-g293841-d27735080-Reviews-La_Brezi_Suites-Kampala_Central_Region.html"
+                      >
+                        <Image
+                          src="https://www.tripadvisor.com/img/cdsi/img2/badges/ollie-11424-2.gif"
+                          alt="TripAdvisor"
                           width={100}
                           height={50}
                           className="h-auto w-auto"
@@ -106,7 +121,17 @@ const Footer = () => {
                     </li>
                   </ul>
                 </div>
-                <script async src="https://www.jscache.com/wejs?wtype=rated&amp;uniq=579&amp;locationId=27735080&amp;lang=en_US&amp;display_version=2" data-loadtrk onload="this.loadtrk=true"></script>
+
+                {/* ✅ Correct Script Integration */}
+                <Script
+                  async
+                  strategy="afterInteractive"
+                  src="https://www.jscache.com/wejs?wtype=rated&uniq=579&locationId=27735080&lang=en_US&display_version=2"
+                  onLoad={() => {
+                    console.log("TripAdvisor script loaded");
+                    (window as any).loadtrk = true;
+                  }}
+                />
               </div>
             </div>
           </div>
@@ -124,6 +149,8 @@ const Footer = () => {
       </div>
     </footer>
   );
-}
+};
 
 export default Footer;
+// Note: Ensure that the `next/script` import is used correctly to avoid hydration issues.
+// The Script component is used to load the TripAdvisor script asynchronously after the component has mounted.
