@@ -9,6 +9,7 @@ import ExperiencesGrid from "./middle/page";
 import { useState, useEffect } from "react";
 import FacilitySection from "./components/hotel_facilities/page";
 import HotelJumbotron from "./components/hotel_jambatron/page";
+import EnhancedChatbot from "./components/enhanced-chatbot/EnhancedChatbot";
 import "flowbite";
 
 const customTheme = createTheme({
