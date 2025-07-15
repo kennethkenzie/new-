@@ -25,36 +25,7 @@ const customTheme = createTheme({
 });
 
 export default function App() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState([
-    { from: "bot", text: "Hello! I'm your hotel assistant. How can I help you today?" },
-  ]);
-  const [input, setInput] = useState("");
   const [loading, setLoading] = useState(true);
-
-  const handleSend = () => {
-    if (!input.trim()) return;
-
-    const newMessages = [...messages, { from: "user", text: input }];
-    setMessages(newMessages);
-    setInput("");
-    
-    // Simulate bot response after a short delay
-    setTimeout(() => {
-      let botReply = "I'm happy to help with that. For immediate assistance, you can also call our front desk at extension 0.";
-      if (input.toLowerCase().includes("hello") || input.toLowerCase().includes("hi")) {
-        botReply = "Hello! Welcome to La Brezi Suites. How can I assist you today?";
-      } else if (input.toLowerCase().includes("help")) {
-        botReply = "I can help with room service, spa bookings, restaurant reservations, and general inquiries. What do you need?";
-      } else if (input.toLowerCase().includes("reservation")) {
-        botReply = "For reservations, you can book directly through our website or call +1 (555) 123-4567. Would you like me to direct you to our booking page?";
-      } else if (input.toLowerCase().includes("bye") || input.toLowerCase().includes("goodbye")) {
-        botReply = "Thank you for chatting with us! Have a wonderful stay at La Brezi Suites!";
-      }
-      
-      setMessages([...newMessages, { from: "bot", text: botReply }]);
-    }, 1000);
-  };
 
   useEffect(() => {
     const timer = setTimeout(() => {
