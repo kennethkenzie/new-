@@ -45,6 +45,9 @@ const Footer = () => {
             <a href="/contact" className="hover:underline">Contact Us</a>
             <a href="/dining" className="hover:underline">Dining</a>
             <a href="/blog" className="hover:underline">Blog</a>
+            <a href="/press-center" className="hover:underline">Press Center</a>
+            <a href="/awards" className="hover:underline">Awards</a>
+            <a href="/travel-agents" className="hover:underline">Travel Agents</a>
           </div>
         </div>
 
