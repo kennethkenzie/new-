@@ -230,6 +230,13 @@ const Navbar = () => {
               Weddings & Events
             </a>
             <a 
+              href="/news" 
+              className="text-[#4A3F36] hover:text-[#C46A26] py-2 border-b border-[#C49A6C] transition-colors duration-200"
+              onClick={toggleMoreMenu}
+            >
+              News & Updates
+            </a>
+            <a 
               href="/dining" 
               className="text-[#4A3F36] hover:text-[#C46A26] py-2 border-b border-[#C49A6C] transition-colors duration-200"
               onClick={toggleMoreMenu}
