@@ -52,6 +52,11 @@ const EnhancedChatbot = () => {
   const loadConversationHistory = async (currentSessionId) => {
     try {
       const response = await fetch(`/api/chatbot?sessionId=${currentSessionId}&language=${language}`);
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
       const data = await response.json();
       
       if (data.welcomeMessage) {
@@ -64,6 +69,13 @@ const EnhancedChatbot = () => {
       }
     } catch (error) {
       console.error('Failed to load conversation history:', error);
+      // Set default welcome message if API fails
+      setMessages([{
+        id: Date.now(),
+        type: 'assistant',
+        content: 'Hello! I\'m your hotel assistant. How can I help you today?',
+        timestamp: new Date().toISOString()
+      }]);
     }
   };
 
