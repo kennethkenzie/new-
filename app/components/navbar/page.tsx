@@ -165,12 +165,12 @@ const Navbar = () => {
             </div>
 
             {/* Check Availability Button */}
-            <button
-              onClick={toggleBookingForm}
+            <Link
+              href="/booking"
               className="bg-[#C46A26] text-white text-xs md:text-sm uppercase px-3 md:px-6 py-1 md:py-2 rounded-md shadow-md hover:bg-[#A85B1F] transition whitespace-nowrap"
             >
               BOOK NOW
-            </button>
+            </Link>
           </div>
         </header>
 
