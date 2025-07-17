@@ -4,6 +4,7 @@ import Image from "next/image";
 import { FaAward, FaLeaf, FaUtensils, FaWineGlassAlt } from "react-icons/fa";
 import Footer from "../components/footer/page";
 import Navbar from "../components/navbar/page";
+import EnhancedChatbot from "../components/enhanced-chatbot/EnhancedChatbot";
 
 const AboutUs = () => {
   return (
@@ -129,6 +130,7 @@ const AboutUs = () => {
       </section>
 
       <Footer />
+      <EnhancedChatbot />
     </>
   );
 };

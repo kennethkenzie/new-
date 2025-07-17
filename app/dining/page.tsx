@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Navbar from "../components/navbar/page";
 import Footer from "../components/footer/page";
+import EnhancedChatbot from "../components/enhanced-chatbot/EnhancedChatbot";
 
 export default function DiningPage() {
   const restaurants = [
@@ -282,6 +283,7 @@ export default function DiningPage() {
       </div>
     </div>
     <Footer />
+    <EnhancedChatbot />
     </>
   );
 }

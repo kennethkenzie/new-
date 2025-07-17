@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Navbar from "../components/navbar/page";
 import Footer from "../components/footer/page";
+import EnhancedChatbot from "../components/enhanced-chatbot/EnhancedChatbot";
 
 const Contact = () => {
   const [errors, setErrors] = useState<string[]>([]);
@@ -243,6 +244,7 @@ const Contact = () => {
         </section>
         <Footer />
       </div>
+      <EnhancedChatbot />
     </>
   );
 };
