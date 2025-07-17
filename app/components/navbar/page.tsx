@@ -125,9 +125,9 @@ const Navbar = () => {
 
                 <div className="absolute left-1/2 transform -translate-x-1/2 mt-4 w-60 bg-white shadow-lg border-t-4 border-[#C46A26] rounded-b-md opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-300 z-50">
                   <div className="flex flex-col text-center text-[#4A3F36] text-sm py-4">
-                    <a href="/accomodation/rooms/single" className="py-2 hover:bg-[#F6F0E5]">Single Room</a>
-                    <a href="/accomodation/rooms/double" className="py-2 hover:bg-[#F6F0E5]">Double Room</a>
-                    <a href="/accomodation/rooms/executive" className="py-2 hover:bg-[#F6F0E5]">Executive Room</a>
+                    <a href="/accommodation/rooms/single" className="py-2 hover:bg-[#F6F0E5]">Single Room</a>
+                    <a href="/accommodation/rooms/double" className="py-2 hover:bg-[#F6F0E5]">Double Room</a>
+                    <a href="/accommodation/rooms/executive" className="py-2 hover:bg-[#F6F0E5]">Executive Room</a>
                   </div>
                 </div>
               </div>
