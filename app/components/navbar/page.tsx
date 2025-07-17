@@ -214,14 +214,14 @@ const Navbar = () => {
               Contact Us
             </a>
             <a 
-              href="/family" 
+              href="/family-packages" 
               className="text-[#4A3F36] hover:text-[#C46A26] py-2 border-b border-[#C49A6C] transition-colors duration-200"
               onClick={toggleMoreMenu}
             >
               Family Packages
             </a>
             <a 
-              href="/weddings" 
+              href="/weddings-events" 
               className="text-[#4A3F36] hover:text-[#C46A26] py-2 border-b border-[#C49A6C] transition-colors duration-200"
               onClick={toggleMoreMenu}
             >
