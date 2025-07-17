@@ -1,25 +1,32 @@
 import React from 'react';
+import Link from 'next/link';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 
 const rooms = [
   {
+    id: 'double',
     title: 'Double Room',
     description: 'Spacious room with panoramic views and premium amenities',
-    price: '$299/night',
+    price: 'UGX 120,000/night',
+    originalPrice: 'UGX 150,000',
     image: 'https://ik.imagekit.io/67mog36hf/Labrezi/IMG-20210325-WA0017.jpg?updatedAt=1731996604115',
   },
   {
-    title: 'Twin Suite',
+    id: 'executive',
+    title: 'Executive Suite',
     description: 'Luxurious suite with separate living area and premium services',
-    price: '$499/night',
-    image: 'https://ik.imagekit.io/67mog36hf/Labrezi/IMG-20210323-WA0057.jpg?updatedAt=1731996599938',
+    price: 'UGX 250,000/night',
+    originalPrice: 'UGX 300,000',
+    image: 'https://ik.imagekit.io/67mog36hf/Labrezi/EXECTIVE_BIG_ROOM.png?updatedAt=1731996591628',
   },
   {
-    title: 'Executive Suite',
-    description: 'Ultimate luxury with private terrace and butler service',
-    price: '$899/night',
-    image: 'https://ik.imagekit.io/67mog36hf/Labrezi/EXECTIVE_BIG_ROOM.png?updatedAt=1731996591628',
+    id: 'single',
+    title: 'Single Room',
+    description: 'Cozy comfort for the solo traveler with modern amenities',
+    price: 'UGX 80,000/night',
+    originalPrice: 'UGX 100,000',
+    image: 'https://ik.imagekit.io/67mog36hf/Labrezi/LABREZI_SUITES_a1.png?updatedAt=1731996616563',
   },
 ];
 
@@ -30,12 +37,20 @@ const RoomCard = ({ room }) => (
       <h3 className="text-lg font-semibold text-gray-800 mb-1">{room.title}</h3>
       <p className="text-gray-600 flex-grow">{room.description}</p>
       <div className="flex justify-between items-center mt-4">
-        <p className="text-[#991b1b] font-bold">{room.price}</p>
-        <a href="../accomodation/rooms" className="text-sm underline text-gray-700">View Details</a>
+        <div>
+          <p className="text-gray-400 text-sm line-through">{room.originalPrice}</p>
+          <p className="text-[#991b1b] font-bold">{room.price}</p>
+        </div>
+        <Link href={`/accommodation/rooms/${room.id}`} className="text-sm underline text-gray-700 hover:text-[#991b1b]">
+          View Details
+        </Link>
       </div>
-      <button className="mt-4 bg-[#991b1b] text-white py-2 rounded-md hover:bg-[#7f1d1d] transition">
+      <Link 
+        href={`/booking?room=${room.id}`}
+        className="mt-4 bg-[#991b1b] text-white py-2 rounded-md hover:bg-[#7f1d1d] transition text-center block"
+      >
         BOOK NOW
-      </button>
+      </Link>
     </div>
   </div>
 );
@@ -68,9 +83,12 @@ const RoomCards = () => {
       </div>
 
       <div className="flex justify-center mt-10">
-        <button className="border border-gray-800 text-gray-800 px-6 py-2 hover:bg-gray-800 hover:text-white transition">
+        <Link 
+          href="/accommodation"
+          className="border border-gray-800 text-gray-800 px-6 py-2 hover:bg-gray-800 hover:text-white transition"
+        >
           VIEW ALL ACCOMMODATIONS
-        </button>
+        </Link>
       </div>
     </div>
   );
