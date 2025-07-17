@@ -162,7 +162,10 @@ const Navbar = () => {
                   <a href="/family-packages" className="hover:underline py-2 border-b border-[#C49A6C]">Family Packages</a>
                   <a href="/weddings-events" className="hover:underline py-2 border-b border-[#C49A6C]">Weddings & Events</a>
                   <a href="/news" className="hover:underline py-2 border-b border-[#C49A6C]">News & Updates</a>
-                  <a href="/gallery" className="hover:underline py-2">Gallery</a>
+                  <a href="/gallery" className="hover:underline py-2 border-b border-[#C49A6C]">Gallery</a>
+                  <a href="/press-center" className="hover:underline py-2 border-b border-[#C49A6C]">Press Center</a>
+                  <a href="/awards" className="hover:underline py-2 border-b border-[#C49A6C]">Awards</a>
+                  <a href="/travel-agents" className="hover:underline py-2">Travel Agents</a>
                 </nav>
               </div>
             </div>
