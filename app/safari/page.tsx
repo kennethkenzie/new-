@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import Navbar from "../components/navbar/page";
 import Footer from "../components/footer/page";
+import EnhancedChatbot from "../components/enhanced-chatbot/EnhancedChatbot";
 import { FaBinoculars, FaCamera, FaTree, FaSun, FaUtensils, FaHotel } from "react-icons/fa";
 
 const SafarisPage = () => {
@@ -252,6 +253,7 @@ const SafarisPage = () => {
       </div>
 
       <Footer />
+      <EnhancedChatbot />
     </>
   );
 };

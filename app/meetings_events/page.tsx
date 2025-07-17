@@ -3,6 +3,7 @@
 import React from "react";
 import Navbar from "../components/navbar/page";
 import Footer from "../components/footer/page";
+import EnhancedChatbot from "../components/enhanced-chatbot/EnhancedChatbot";
 import {
   FaUsers,
   FaCalendarAlt,
@@ -197,6 +198,7 @@ const MeetingsEventsPage: React.FC = () => {
       </div>
 
       <Footer />
+      <EnhancedChatbot />
     </section>
   );
 };
