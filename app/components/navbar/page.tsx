@@ -247,6 +247,27 @@ const Navbar = () => {
             >
               Dining Experiences
             </a>
+            <a 
+              href="/press-center" 
+              className="text-[#4A3F36] hover:text-[#C46A26] py-2 border-b border-[#C49A6C] transition-colors duration-200"
+              onClick={toggleMoreMenu}
+            >
+              Press Center
+            </a>
+            <a 
+              href="/awards" 
+              className="text-[#4A3F36] hover:text-[#C46A26] py-2 border-b border-[#C49A6C] transition-colors duration-200"
+              onClick={toggleMoreMenu}
+            >
+              Awards
+            </a>
+            <a 
+              href="/travel-agents" 
+              className="text-[#4A3F36] hover:text-[#C46A26] py-2 border-b border-[#C49A6C] transition-colors duration-200"
+              onClick={toggleMoreMenu}
+            >
+              Travel Agents
+            </a>
             {/* <a 
               href="/spa" 
               className="text-[#4A3F36] hover:text-[#C46A26] py-2 border-b border-[#C49A6C] transition-colors duration-200"
