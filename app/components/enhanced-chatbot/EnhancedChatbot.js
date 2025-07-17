@@ -42,10 +42,22 @@ const EnhancedChatbot = () => {
   const loadLanguages = async () => {
     try {
       const response = await fetch('/api/chatbot/languages');
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
       const data = await response.json();
       setLanguages(data.languages);
     } catch (error) {
       console.error('Failed to load languages:', error);
+      // Set default languages if API fails
+      setLanguages([
+        { code: 'en', name: 'English', flag: '🇺🇸' },
+        { code: 'es', name: 'Español', flag: '🇪🇸' },
+        { code: 'fr', name: 'Français', flag: '🇫🇷' },
+        { code: 'de', name: 'Deutsch', flag: '🇩🇪' }
+      ]);
     }
   };
 
