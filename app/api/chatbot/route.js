@@ -126,25 +126,33 @@ Respond in ${language === 'en' ? 'English' : language === 'es' ? 'Spanish' : lan
 }
 
 export async function GET(request) {
-  const { searchParams } = new URL(request.url);
-  const sessionId = searchParams.get('sessionId');
-  const language = searchParams.get('language') || 'en';
-  
-  if (!sessionId) {
+  try {
+    const { searchParams } = new URL(request.url);
+    const sessionId = searchParams.get('sessionId');
+    const language = searchParams.get('language') || 'en';
+    
+    if (!sessionId) {
+      return NextResponse.json(
+        { error: 'SessionId is required' },
+        { status: 400 }
+      );
+    }
+
+    const translations = TRANSLATIONS[language] || TRANSLATIONS.en;
+    
+    // Get conversation history for this session
+    const history = conversationHistory.get(sessionId) || [];
+    
+    return NextResponse.json({
+      history: history.filter(msg => msg.role !== 'system'),
+      welcomeMessage: translations.welcomeMessage,
+      sessionId
+    });
+  } catch (error) {
+    console.error('GET Chatbot API error:', error);
     return NextResponse.json(
-      { error: 'SessionId is required' },
-      { status: 400 }
+      { error: 'Failed to load conversation history' },
+      { status: 500 }
     );
   }
-
-  const translations = TRANSLATIONS[language] || TRANSLATIONS.en;
-  
-  // Get conversation history for this session
-  const history = conversationHistory.get(sessionId) || [];
-  
-  return NextResponse.json({
-    history: history.filter(msg => msg.role !== 'system'),
-    welcomeMessage: translations.welcomeMessage,
-    sessionId
-  });
 }
