@@ -12,6 +12,7 @@ const sections = [
     category: "BAR & LOUNGE",
     title: "Wellness & Restoration",
     buttonLabel: "Immerse",
+    link: "/dining"
   },
   {
     image:
@@ -19,6 +20,7 @@ const sections = [
     category: "MEETINGS",
     title: "Exclusive Retreats",
     buttonLabel: "Plan Your Meeting",
+    link: "/meetings_events"
   },
   {
     image:
@@ -26,6 +28,7 @@ const sections = [
     category: "WEDDINGS",
     title: "Perfect Celebrations",
     buttonLabel: "Start Planning",
+    link: "/weddings-events"
   },
   {
     image:
@@ -33,6 +36,7 @@ const sections = [
     category: "DINING",
     title: "Coastal Ranch Cuisine",
     buttonLabel: "View Restaurants",
+    link: "/dining"
   },
   {
     image:
@@ -40,13 +44,15 @@ const sections = [
     category: "ACTIVITIES",
     title: "Curated Experiences",
     buttonLabel: "Learn More",
+    link: "/safari"
   },
   {
     image:
-      "https://ik.imagekit.io/67mog36hf/Labrezi/SHAN_PIX-18.jpg?updatedAt=1731997434174",
-    category: "EVENT CALENDAR",
-    title: "Inspired Events",
-    buttonLabel: "View Calendar",
+      "https://ik.imagekit.io/67mog36hf/Labrezi/family-experience.jpg?updatedAt=1731997434175",
+    category: "FAMILY",
+    title: "Family Adventures",
+    buttonLabel: "View Packages",
+    link: "/family-packages"
   },
 ];
 
