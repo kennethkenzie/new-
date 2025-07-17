@@ -56,7 +56,7 @@ const sections = [
   },
 ];
 
-const Card = ({ image, category, title, buttonLabel }) => (
+const Card = ({ image, category, title, buttonLabel, link }) => (
   <div className="relative group overflow-hidden rounded-md shadow-lg">
     <img
       src={image}
@@ -66,9 +66,12 @@ const Card = ({ image, category, title, buttonLabel }) => (
     <div className="bg-black/40 w-full p-4 absolute inset-0 bg-opacity-50 flex flex-col justify-end text-white">
       <p className="text-sm uppercase">{category}</p>
       <h3 className="text-xl font-semibold">{title}</h3>
-      <button className="border border-white px-4 py-2 mt-2 text-sm hover:bg-white hover:text-black transition">
+      <Link 
+        href={link}
+        className="border border-white px-4 py-2 mt-2 text-sm hover:bg-white hover:text-black transition text-center"
+      >
         {buttonLabel}
-      </button>
+      </Link>
     </div>
   </div>
 );
