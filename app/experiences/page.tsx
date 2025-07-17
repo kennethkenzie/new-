@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import Navbar from "../components/navbar/page";
 import Footer from "../components/footer/page";
+import EnhancedChatbot from "../components/enhanced-chatbot/EnhancedChatbot";
 import { FaSpa, FaUmbrellaBeach, FaSwimmingPool, FaWineGlassAlt, FaHiking, FaConciergeBell } from "react-icons/fa";
 
 const ExperiencesPage = () => {
@@ -134,6 +135,7 @@ const ExperiencesPage = () => {
       </div>
 
       <Footer />
+      <EnhancedChatbot />
     </>
   );
 };

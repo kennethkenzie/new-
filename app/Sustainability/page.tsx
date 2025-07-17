@@ -2,6 +2,7 @@
 import Image from 'next/image';
 import Navbar from "../components/navbar/page";
 import Footer from "../components/footer/page";
+import EnhancedChatbot from "../components/enhanced-chatbot/EnhancedChatbot";
 import { FaLeaf, FaRecycle, FaSolarPanel, FaWater, FaTree } from 'react-icons/fa';
 
 export default function SustainabilityPage() {
@@ -233,8 +234,7 @@ export default function SustainabilityPage() {
       </div>
     </div>
           <Footer />
+          <EnhancedChatbot />
     </>
   );
 }
-
-
