@@ -33,6 +33,11 @@ const Footer = dynamic(() => import('../components/footer/page'), {
   ssr: false
 });
 
+const EnhancedChatbot = dynamic(() => import('../components/enhanced-chatbot/EnhancedChatbot'), {
+  loading: () => null,
+  ssr: false
+});
+
 const BlogPage = () => {
   // Memoized data for better performance
   const { blogPosts, categories } = useMemo(() => ({
@@ -277,6 +282,7 @@ const BlogPage = () => {
       </section>
 
       <Footer />
+      <EnhancedChatbot />
     </>
   );
 };
