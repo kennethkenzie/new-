@@ -77,7 +77,7 @@ Respond in ${language === 'en' ? 'English' : language === 'es' ? 'Spanish' : lan
     
     // Call OpenAI API
     const completion = await openai.chat.completions.create({
-      model: 'gpt-4-turbo-preview',
+      model: 'gpt-4o-mini',
       messages: history,
       max_tokens: 500,
       temperature: 0.7,
