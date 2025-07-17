@@ -2,8 +2,10 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import Navbar from "../../../components/navbar/page";
 import Footer from "../../../components/footer/page";
+import EnhancedChatbot from "../../../components/enhanced-chatbot/EnhancedChatbot";
 import { FaBed, FaWifi, FaTv, FaShower, FaParking, FaUtensils, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 const DoubleRoomPage = () => {
@@ -141,9 +143,12 @@ const DoubleRoomPage = () => {
                 </div>
               </div>
 
-              <button className="w-full bg-[#A80532] text-white py-2 md:py-3 rounded hover:bg-[#8A0425] transition-colors text-sm md:text-base">
-                Check Availability
-              </button>
+              <Link 
+                href="/booking?room=double"
+                className="block w-full bg-[#A80532] text-white py-2 md:py-3 rounded hover:bg-[#8A0425] transition-colors text-sm md:text-base text-center"
+              >
+                BOOK NOW
+              </Link>
             </div>
           </div>
 
@@ -217,6 +222,7 @@ const DoubleRoomPage = () => {
       </div>
 
       <Footer />
+      <EnhancedChatbot />
     </>
   );
 };

@@ -2,8 +2,10 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import Navbar from "../../../components/navbar/page";
 import Footer from "../../../components/footer/page";
+import EnhancedChatbot from "../../../components/enhanced-chatbot/EnhancedChatbot";
 import { FaBed, FaWifi, FaTv, FaShower, FaParking, FaChevronLeft, FaChevronRight, FaConciergeBell, FaWineGlassAlt } from "react-icons/fa";
 import { MdKitchen } from "react-icons/md";
 import { BiFridge } from "react-icons/bi";
@@ -165,9 +167,12 @@ const ExecutiveRoomPage = () => {
                 </div>
               </div>
 
-              <button className="w-full bg-[#A80532] text-white py-3 rounded hover:bg-[#8A0425] transition-colors font-bold">
+              <Link 
+                href="/booking?room=executive"
+                className="block w-full bg-[#A80532] text-white py-3 rounded hover:bg-[#8A0425] transition-colors font-bold text-center"
+              >
                 BOOK SUITE NOW
-              </button>
+              </Link>
 
               <div className="mt-4 text-center text-sm text-[#4A3F36]">
                 <p>Includes complimentary:</p>
@@ -252,6 +257,7 @@ const ExecutiveRoomPage = () => {
       </div>
 
       <Footer />
+      <EnhancedChatbot />
     </>
   );
 };
