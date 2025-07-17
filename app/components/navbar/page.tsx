@@ -117,7 +117,7 @@ const Navbar = () => {
             <nav className="hidden md:flex space-x-4 lg:space-x-6 text-[#4A3F36] uppercase text-sm items-center">
               <div className="relative group">
                 <div className="flex flex-col items-center">
-                  <a href="/accomodation" className="hover:text-[#C46A26] pb-2 relative text-sm">
+                  <a href="/accommodation" className="hover:text-[#C46A26] pb-2 relative text-sm">
                     Accommodation
                     <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-6 h-1 p-7 hidden group-hover:block"></span>
                   </a>
