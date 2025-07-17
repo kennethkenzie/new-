@@ -272,9 +272,12 @@ export default function DiningPage() {
             to secure your preferred dining time and venue.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-[#C46A26] hover:bg-[#A85B1F] text-white px-8 py-3 rounded transition">
+            <Link 
+              href="/booking"
+              className="bg-[#C46A26] hover:bg-[#A85B1F] text-white px-8 py-3 rounded transition text-center"
+            >
               Book Online
-            </button>
+            </Link>
             <button className="bg-transparent hover:bg-white hover:text-[#4A3F36] text-white border border-white px-8 py-3 rounded transition">
               Call +1 (555) 123-4567
             </button>
