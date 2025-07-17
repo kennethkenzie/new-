@@ -81,9 +81,9 @@ const Navbar = () => {
           <div className={`container mx-auto flex justify-between items-center border-b border-[#C49A6C] transition-all duration-300 ${isScrolled ? 'h-0 overflow-hidden py-0' : 'py-3'}`}>
             <nav className="hidden md:flex space-x-6 text-sm text-[#4A3F36] uppercase">
               <a href="/Sustainability" className="hover:underline">Sustainability</a>
-              <a href="#" className="hover:underline">Press Center</a>
-              <a href="#" className="hover:underline">Awards</a>
-              <a href="#" className="hover:underline">Travel Agents</a>
+              <a href="/press-center" className="hover:underline">Press Center</a>
+              <a href="/awards" className="hover:underline">Awards</a>
+              <a href="/travel-agents" className="hover:underline">Travel Agents</a>
               <a href="/contact" className="hover:underline">Contact Us / E-Concierge</a>
             </nav>
             <div className="text-sm text-[#4A3F36] uppercase">EN ▼</div>
