@@ -35,15 +35,15 @@ const Footer = () => {
             La brezi suites sonde
           </h3>
           <div className="grid grid-cols-2 gap-2">
-            <a href="#" className="hover:underline">Sustainability</a>
-            <a href="#" className="hover:underline">Travel Agents</a>
-            <a href="#" className="hover:underline">Events Calendar</a>
-            <a href="#" className="hover:underline">Press Center</a>
-            <a href="#" className="hover:underline">Prestige Club</a>
-            <a href="#" className="hover:underline">Careers</a>
+            <a href="/Sustainability" className="hover:underline">Sustainability</a>
+            <a href="/weddings-events" className="hover:underline">Weddings & Events</a>
+            <a href="/family-packages" className="hover:underline">Family Packages</a>
+            <a href="/gallery" className="hover:underline">Gallery</a>
+            <a href="/offers" className="hover:underline">Offers</a>
+            <a href="/safari" className="hover:underline">Safaris</a>
             <a href="/about" className="hover:underline">About Us</a>
             <a href="/contact" className="hover:underline">Contact Us</a>
-            <a href="#" className="hover:underline">Social Wall</a>
+            <a href="/dining" className="hover:underline">Dining</a>
             <a href="/blog" className="hover:underline">Blog</a>
           </div>
         </div>
