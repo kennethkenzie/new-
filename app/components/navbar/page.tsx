@@ -152,7 +152,7 @@ const Navbar = () => {
             >
               <div className="container mx-auto px-6 py-4">
                 <nav className="flex flex-col space-y-4 text-[#4A3F36] uppercase text-sm">
-                  <a href="/accomodation" className="hover:underline py-2 border-b border-[#C49A6C]">Accomodation</a>
+                  <a href="/accommodation" className="hover:underline py-2 border-b border-[#C49A6C]">Accommodation</a>
                   <a href="/contact" className="hover:underline py-2 border-b border-[#C49A6C]">Contact Us</a>
                   {/* <a href="#" className="hover:underline py-2 border-b border-[#C49A6C]">Destinations</a> */}
                   <a href="/offers" className="hover:underline py-2 border-b border-[#C49A6C]">Offers</a>
