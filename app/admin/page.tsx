@@ -29,8 +29,22 @@ const AdminLogin = () => {
       });
 
       console.log('Response status:', response.status);
+      console.log('Response headers:', response.headers);
+      
+      // Check if response has content before parsing JSON
+      const contentType = response.headers.get('content-type');
+      if (!contentType || !contentType.includes('application/json')) {
+        throw new Error('Invalid response format');
+      }
 
-      const data = await response.json();
+      const responseText = await response.text();
+      console.log('Response text:', responseText);
+
+      if (!responseText) {
+        throw new Error('Empty response from server');
+      }
+
+      const data = JSON.parse(responseText);
       console.log('Response data:', data);
       
       if (response.ok && data.success) {
