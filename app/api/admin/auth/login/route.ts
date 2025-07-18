@@ -34,7 +34,7 @@ export async function POST(request: NextRequest) {
         process.env.JWT_SECRET || 'your-secret-key'
       );
 
-      return NextResponse.json({
+      const response = NextResponse.json({
         success: true,
         token,
         user: {
@@ -43,6 +43,9 @@ export async function POST(request: NextRequest) {
           name: 'Hotel Administrator'
         }
       });
+      
+      response.headers.set('Content-Type', 'application/json');
+      return response;
     } else {
       return NextResponse.json(
         { error: 'Invalid credentials' },
