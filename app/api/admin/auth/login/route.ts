@@ -1,50 +1,26 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { sign } from 'jsonwebtoken';
-
-// Demo admin credentials (in production, these should be hashed and stored in database)
-const ADMIN_CREDENTIALS = {
-  username: 'admin',
-  password: 'labrezi123' // In production, use bcrypt to hash passwords
-};
+import connectDB from '../../../../lib/mongodb.js';
+import User from '../../../../models/User.js';
 
 export async function POST(request: NextRequest) {
   try {
+    await connectDB();
     console.log('Login API called');
     
     const { username, password } = await request.json();
     console.log('Parsed credentials:', { username, password: password ? '***' : 'missing' });
 
-    // Validate credentials
-    if (username === ADMIN_CREDENTIALS.username && password === ADMIN_CREDENTIALS.password) {
-      // Generate JWT token
-      const token = sign(
-        { 
-          username, 
-          role: 'admin',
-          exp: Math.floor(Date.now() / 1000) + (24 * 60 * 60) // 24 hours
-        },
-        process.env.JWT_SECRET || 'your-secret-key'
-      );
+    // Find user by username or email
+    const user = await User.findOne({
+      $or: [
+        { username: username },
+        { email: username }
+      ]
+    });
 
-      const responseData = {
-        success: true,
-        token,
-        user: {
-          username,
-          role: 'admin',
-          name: 'Hotel Administrator'
-        }
-      };
-
-      console.log('Login successful, sending response');
-      return new Response(JSON.stringify(responseData), {
-        status: 200,
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-    } else {
-      console.log('Invalid credentials provided');
+    if (!user) {
+      console.log('User not found');
       return new Response(JSON.stringify({ error: 'Invalid credentials' }), {
         status: 401,
         headers: {
@@ -52,6 +28,67 @@ export async function POST(request: NextRequest) {
         },
       });
     }
+
+    // Check if user is active
+    if (!user.isActive) {
+      console.log('User account is inactive');
+      return new Response(JSON.stringify({ error: 'Account is inactive' }), {
+        status: 401,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+    }
+
+    // Compare password
+    const isPasswordValid = await user.comparePassword(password);
+    if (!isPasswordValid) {
+      console.log('Invalid password');
+      return new Response(JSON.stringify({ error: 'Invalid credentials' }), {
+        status: 401,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+    }
+
+    // Update last login
+    user.lastLogin = new Date();
+    await user.save();
+
+    // Generate JWT token
+    const token = sign(
+      { 
+        userId: user._id,
+        username: user.username,
+        role: user.role,
+        exp: Math.floor(Date.now() / 1000) + (24 * 60 * 60) // 24 hours
+      },
+      process.env.JWT_SECRET || 'your-secret-key'
+    );
+
+    const responseData = {
+      success: true,
+      token,
+      user: {
+        id: user._id,
+        username: user.username,
+        email: user.email,
+        role: user.role,
+        name: user.name,
+        avatar: user.avatar,
+        lastLogin: user.lastLogin
+      }
+    };
+
+    console.log('Login successful, sending response');
+    return new Response(JSON.stringify(responseData), {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
   } catch (error) {
     console.error('Login error:', error);
     return new Response(JSON.stringify({ error: 'Internal server error' }), {
