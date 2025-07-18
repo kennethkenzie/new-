@@ -93,7 +93,7 @@ const AdminDashboard = () => {
     {
       title: 'Occupancy Rate',
       value: `${stats.occupancyRate}%`,
-      icon: Hotel,
+      icon: Home,
       color: 'bg-purple-500',
       change: '+3%',
       changeType: 'positive'
