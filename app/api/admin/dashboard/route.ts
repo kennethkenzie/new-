@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
-import connectDB from '../../../../lib/mongodb.js';
-import User from '../../../../models/User.js';
-import Booking from '../../../../models/Booking.js';
-import Room from '../../../../models/Room.js';
-import Message from '../../../../models/Message.js';
+import connectDB from '../../../../lib/mongodb';
+import User from '../../../../models/User';
+import Booking from '../../../../models/Booking';
+import Room from '../../../../models/Room';
+import Message from '../../../../models/Message';
 import { verify } from 'jsonwebtoken';
 
 // Verify JWT token
