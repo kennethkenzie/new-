@@ -73,7 +73,7 @@ const DashboardLayout = ({ children }) => {
         <div className="flex items-center justify-between h-16 px-4 border-b border-gray-200">
           <Link href="/admin/dashboard" className="flex items-center space-x-2">
             <div className="w-8 h-8 bg-[#C46A26] rounded-lg flex items-center justify-center">
-              <Hotel className="w-5 h-5 text-white" />
+              <Home className="w-5 h-5 text-white" />
             </div>
             <span className="text-xl font-bold text-[#4A3F36]">La Brezi</span>
           </Link>
