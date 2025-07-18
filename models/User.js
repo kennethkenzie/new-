@@ -76,6 +76,36 @@ UserSchema.methods.comparePassword = async function(candidatePassword) {
   return await bcryptjs.compare(candidatePassword, this.password);
 };
 
+// Get user permissions based on role
+UserSchema.methods.getPermissions = function() {
+  const rolePermissions = {
+    admin: [
+      'user_management',
+      'file_management', 
+      'booking_management',
+      'room_management',
+      'message_management',
+      'dashboard_access',
+      'content_management'
+    ],
+    manager: [
+      'file_management', 
+      'booking_management',
+      'room_management',
+      'message_management',
+      'dashboard_access'
+    ],
+    staff: [
+      'booking_management',
+      'message_management',
+      'dashboard_access'
+    ],
+    guest: []
+  };
+  
+  return rolePermissions[this.role] || [];
+};
+
 // Update the updatedAt field before saving
 UserSchema.pre('save', function(next) {
   this.updatedAt = new Date();
