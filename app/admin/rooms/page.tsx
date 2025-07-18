@@ -420,7 +420,7 @@ const RoomsPage = () => {
                         </p>
                       </div>
                       <div className="w-12 h-12 bg-green-200 rounded-full flex items-center justify-center">
-                        <Hotel className="w-6 h-6 text-green-600" />
+                        <Home className="w-6 h-6 text-green-600" />
                       </div>
                     </div>
                   </div>
