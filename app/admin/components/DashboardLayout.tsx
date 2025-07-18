@@ -49,9 +49,9 @@ const DashboardLayout = ({ children }) => {
   };
 
   const navigation = [
-    { name: 'Dashboard', href: '/admin/dashboard', icon: BarChart3 },
+    { name: 'Dashboard', href: '/admin/dashboard', icon: BarChart },
     { name: 'Bookings', href: '/admin/bookings', icon: Calendar },
-    { name: 'Rooms', href: '/admin/rooms', icon: Hotel },
+    { name: 'Rooms', href: '/admin/rooms', icon: Home },
     { name: 'Messages', href: '/admin/messages', icon: MessageSquare },
     { name: 'Content', href: '/admin/content', icon: Edit },
     { name: 'Amenities', href: '/admin/amenities', icon: Package },
