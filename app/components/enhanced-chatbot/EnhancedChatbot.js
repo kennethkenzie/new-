@@ -240,33 +240,34 @@ const EnhancedChatbot = () => {
       {/* Enhanced Chatbot Window - Mobile Responsive */}
       {isOpen && (
         <div className="fixed inset-0 md:bottom-20 md:right-5 md:inset-auto md:w-96 md:h-[600px] bg-white md:rounded-lg shadow-2xl flex flex-col overflow-hidden z-50 border-0 md:border border-gray-200">
-          {/* Chat Header */}
-          <div className="bg-gradient-to-r from-[#4A3F36] to-[#C46A26] text-white p-4 flex justify-between items-center">
+          {/* Chat Header - Mobile Responsive */}
+          <div className="bg-gradient-to-r from-[#4A3F36] to-[#C46A26] text-white p-3 md:p-4 flex justify-between items-center">
             <div className="flex items-center">
-              <MessageCircle size={20} className="mr-2" />
+              <MessageCircle size={18} className="mr-2 md:w-5 md:h-5" />
               <div>
-                <h3 className="font-semibold">La Brezi Assistant</h3>
-                <p className="text-xs opacity-75">AI-Powered Hotel Concierge</p>
+                <h3 className="font-semibold text-sm md:text-base">La Brezi Assistant</h3>
+                <p className="text-xs opacity-75 hidden md:block">AI-Powered Hotel Concierge</p>
               </div>
             </div>
             <div className="flex items-center gap-2">
-              {/* Language Selector */}
+              {/* Language Selector - Mobile Optimized */}
               <div className="relative">
                 <button
                   onClick={() => setShowLanguageSelector(!showLanguageSelector)}
-                  className="flex items-center gap-1 px-2 py-1 bg-white bg-opacity-20 rounded text-xs hover:bg-opacity-30 transition-all"
+                  className="flex items-center gap-1 px-2 py-1 bg-white bg-opacity-20 rounded text-xs hover:bg-opacity-30 transition-all touch-manipulation"
                 >
-                  <Globe size={14} />
-                  {currentLanguage?.flag} {currentLanguage?.name}
+                  <Globe size={12} className="md:w-3.5 md:h-3.5" />
+                  <span className="hidden md:inline">{currentLanguage?.flag} {currentLanguage?.name}</span>
+                  <span className="md:hidden">{currentLanguage?.flag}</span>
                 </button>
                 
                 {showLanguageSelector && (
-                  <div className="absolute top-full right-0 mt-2 bg-white rounded shadow-lg border overflow-hidden">
+                  <div className="absolute top-full right-0 mt-2 bg-white rounded shadow-lg border overflow-hidden min-w-[120px] md:min-w-auto">
                     {languages.map(lang => (
                       <button
                         key={lang.code}
                         onClick={() => handleLanguageChange(lang.code)}
-                        className="w-full px-3 py-2 text-left text-gray-700 hover:bg-gray-100 flex items-center gap-2 text-xs"
+                        className="w-full px-3 py-3 md:py-2 text-left text-gray-700 hover:bg-gray-100 flex items-center gap-2 text-xs md:text-sm touch-manipulation"
                       >
                         <span>{lang.flag}</span>
                         <span>{lang.name}</span>
@@ -278,9 +279,9 @@ const EnhancedChatbot = () => {
               
               <button 
                 onClick={() => setIsOpen(false)}
-                className="text-white hover:text-gray-200 transition-colors"
+                className="text-white hover:text-gray-200 transition-colors p-1 touch-manipulation"
               >
-                <X size={20} />
+                <X size={18} className="md:w-5 md:h-5" />
               </button>
             </div>
           </div>
