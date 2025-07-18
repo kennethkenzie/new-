@@ -436,9 +436,9 @@ const EnhancedChatbot = () => {
             </div>
           )}
 
-          {/* Input Area */}
-          <div className="p-4 border-t border-gray-200 bg-white">
-            <div className="flex gap-2">
+          {/* Input Area - Mobile Responsive */}
+          <div className="p-3 md:p-4 border-t border-gray-200 bg-white">
+            <div className="flex gap-2 md:gap-2">
               <input
                 type="text"
                 value={input}
@@ -446,12 +446,12 @@ const EnhancedChatbot = () => {
                 onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
                 placeholder="Type your message..."
                 disabled={loading}
-                className="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#C46A26] disabled:opacity-50"
+                className="flex-1 border border-gray-300 rounded-lg px-3 py-3 md:px-3 md:py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#C46A26] disabled:opacity-50 touch-manipulation"
               />
               <button
                 onClick={handleSendMessage}
                 disabled={loading || !input.trim()}
-                className="px-4 py-2 bg-[#C46A26] text-white rounded-lg hover:bg-[#A85B1F] disabled:opacity-50 transition-colors"
+                className="px-4 py-3 md:px-4 md:py-2 bg-[#C46A26] text-white rounded-lg hover:bg-[#A85B1F] disabled:opacity-50 transition-colors touch-manipulation"
               >
                 <Send size={16} />
               </button>
