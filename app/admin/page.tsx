@@ -29,18 +29,19 @@ const AdminLogin = () => {
       });
 
       console.log('Response status:', response.status);
-      console.log('Response headers:', response.headers);
 
       const data = await response.json();
       console.log('Response data:', data);
       
-      if (response.ok) {
+      if (response.ok && data.success) {
         // Store admin session
         localStorage.setItem('adminToken', data.token);
         localStorage.setItem('adminUser', JSON.stringify(data.user));
         
+        console.log('Stored token and user, redirecting to dashboard');
+        
         // Redirect to dashboard
-        router.push('/admin/dashboard');
+        window.location.href = '/admin/dashboard';
       } else {
         setError(data.error || 'Login failed');
       }
