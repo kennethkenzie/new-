@@ -9,17 +9,9 @@ const ADMIN_CREDENTIALS = {
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.text();
-    console.log('Request body:', body);
+    console.log('Login API called');
     
-    if (!body) {
-      return NextResponse.json(
-        { error: 'Request body is empty' },
-        { status: 400 }
-      );
-    }
-
-    const { username, password } = JSON.parse(body);
+    const { username, password } = await request.json();
     console.log('Parsed credentials:', { username, password: password ? '***' : 'missing' });
 
     // Validate credentials
@@ -34,7 +26,7 @@ export async function POST(request: NextRequest) {
         process.env.JWT_SECRET || 'your-secret-key'
       );
 
-      const response = NextResponse.json({
+      const responseData = {
         success: true,
         token,
         user: {
@@ -42,21 +34,31 @@ export async function POST(request: NextRequest) {
           role: 'admin',
           name: 'Hotel Administrator'
         }
+      };
+
+      console.log('Login successful, sending response');
+      return new Response(JSON.stringify(responseData), {
+        status: 200,
+        headers: {
+          'Content-Type': 'application/json',
+        },
       });
-      
-      response.headers.set('Content-Type', 'application/json');
-      return response;
     } else {
-      return NextResponse.json(
-        { error: 'Invalid credentials' },
-        { status: 401 }
-      );
+      console.log('Invalid credentials provided');
+      return new Response(JSON.stringify({ error: 'Invalid credentials' }), {
+        status: 401,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
     }
   } catch (error) {
     console.error('Login error:', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    return new Response(JSON.stringify({ error: 'Internal server error' }), {
+      status: 500,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
   }
 }
