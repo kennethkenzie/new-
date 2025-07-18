@@ -9,7 +9,18 @@ const ADMIN_CREDENTIALS = {
 
 export async function POST(request: NextRequest) {
   try {
-    const { username, password } = await request.json();
+    const body = await request.text();
+    console.log('Request body:', body);
+    
+    if (!body) {
+      return NextResponse.json(
+        { error: 'Request body is empty' },
+        { status: 400 }
+      );
+    }
+
+    const { username, password } = JSON.parse(body);
+    console.log('Parsed credentials:', { username, password: password ? '***' : 'missing' });
 
     // Validate credentials
     if (username === ADMIN_CREDENTIALS.username && password === ADMIN_CREDENTIALS.password) {
