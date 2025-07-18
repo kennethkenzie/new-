@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import DashboardLayout from '../components/DashboardLayout';
 import { 
-  Hotel, 
+  Home, 
   Edit, 
   Trash2,
   Plus,
