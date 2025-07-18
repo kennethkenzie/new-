@@ -275,7 +275,7 @@ const RoomsPage = () => {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-4">
                         <div className="w-16 h-16 bg-[#C46A26] rounded-lg flex items-center justify-center">
-                          <Hotel className="w-8 h-8 text-white" />
+                          <Home className="w-8 h-8 text-white" />
                         </div>
                         <div>
                           <h3 className="text-lg font-semibold text-[#4A3F36]">{room.name}</h3>
