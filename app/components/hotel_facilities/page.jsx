@@ -144,8 +144,9 @@ function FacilitySection() {
   };
 
   const getRandomFacilities = () => {
-    const shuffled = [...facilities].sort(() => 0.5 - Math.random());
-    return shuffled.slice(0, 3);
+    // Use a deterministic approach to avoid hydration mismatch
+    // Show first 3 facilities instead of random ones
+    return facilities.slice(0, 3);
   };
 
   const filteredFacilities = useMemo(() => {
