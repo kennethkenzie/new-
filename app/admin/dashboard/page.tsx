@@ -243,7 +243,7 @@ const AdminDashboard = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
               { title: 'New Booking', description: 'Create manual booking', icon: Calendar, color: 'bg-blue-500' },
-              { title: 'Manage Rooms', description: 'Update room status', icon: Hotel, color: 'bg-green-500' },
+              { title: 'Manage Rooms', description: 'Update room status', icon: Home, color: 'bg-green-500' },
               { title: 'View Messages', description: 'Check guest messages', icon: MessageSquare, color: 'bg-purple-500' },
               { title: 'Generate Report', description: 'Export analytics', icon: TrendingUp, color: 'bg-orange-500' }
             ].map((action, index) => (
