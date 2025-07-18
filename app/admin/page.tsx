@@ -29,7 +29,6 @@ const AdminLogin = () => {
       });
 
       console.log('Response status:', response.status);
-      console.log('Response headers:', response.headers);
       
       // Check if response has content before parsing JSON
       const contentType = response.headers.get('content-type');
@@ -49,13 +48,27 @@ const AdminLogin = () => {
       
       if (response.ok && data.success) {
         // Store admin session
-        localStorage.setItem('adminToken', data.token);
-        localStorage.setItem('adminUser', JSON.stringify(data.user));
-        
-        console.log('Stored token and user, redirecting to dashboard');
-        
-        // Redirect to dashboard
-        window.location.href = '/admin/dashboard';
+        try {
+          localStorage.setItem('adminToken', data.token);
+          localStorage.setItem('adminUser', JSON.stringify(data.user));
+          console.log('Token stored successfully');
+          
+          // Verify token was stored
+          const storedToken = localStorage.getItem('adminToken');
+          if (storedToken) {
+            console.log('Token verified in localStorage');
+            
+            // Small delay to ensure localStorage is updated
+            setTimeout(() => {
+              window.location.href = '/admin/dashboard';
+            }, 100);
+          } else {
+            throw new Error('Failed to store token in localStorage');
+          }
+        } catch (storageError) {
+          console.error('Storage error:', storageError);
+          setError('Failed to store login session. Please try again.');
+        }
       } else {
         setError(data.error || 'Login failed');
       }
