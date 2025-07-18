@@ -20,7 +20,8 @@ import {
   Calendar,
   Settings,
   Image as ImageIcon,
-  Upload
+  Upload,
+  X
 } from 'react-feather';
 
 const RoomsPage = () => {
