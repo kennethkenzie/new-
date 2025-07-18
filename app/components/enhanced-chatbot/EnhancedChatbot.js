@@ -286,11 +286,11 @@ const EnhancedChatbot = () => {
             </div>
           </div>
 
-          {/* Chat Messages */}
-          <div className="flex-1 overflow-y-auto p-4 bg-gray-50">
+          {/* Chat Messages - Mobile Responsive */}
+          <div className="flex-1 overflow-y-auto p-3 md:p-4 bg-gray-50">
             {messages.map((msg) => (
-              <div key={msg.id} className={`mb-4 flex ${msg.type === 'user' ? 'justify-end' : 'justify-start'}`}>
-                <div className={`max-w-[85%] rounded-lg px-4 py-2 ${
+              <div key={msg.id} className={`mb-3 md:mb-4 flex ${msg.type === 'user' ? 'justify-end' : 'justify-start'}`}>
+                <div className={`max-w-[90%] md:max-w-[85%] rounded-lg px-3 py-2 md:px-4 md:py-2 ${
                   msg.type === 'user' 
                     ? 'bg-[#C46A26] text-white' 
                     : 'bg-white text-gray-800 border border-gray-200 shadow-sm'
@@ -300,14 +300,14 @@ const EnhancedChatbot = () => {
                     {new Date(msg.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                   </p>
                   
-                  {/* Suggestions */}
+                  {/* Suggestions - Mobile Responsive */}
                   {msg.suggestions && msg.suggestions.length > 0 && (
                     <div className="mt-2 flex flex-wrap gap-1">
                       {msg.suggestions.map((suggestion, index) => (
                         <button
                           key={index}
                           onClick={() => handleSuggestionClick(suggestion)}
-                          className="px-2 py-1 text-xs bg-blue-100 text-blue-600 rounded hover:bg-blue-200 transition-colors"
+                          className="px-2 py-1 md:px-3 md:py-1 text-xs bg-blue-100 text-blue-600 rounded hover:bg-blue-200 transition-colors touch-manipulation"
                         >
                           {suggestion}
                         </button>
@@ -315,7 +315,7 @@ const EnhancedChatbot = () => {
                     </div>
                   )}
                   
-                  {/* Booking Confirmation */}
+                  {/* Booking Confirmation - Mobile Responsive */}
                   {msg.isBookingConfirmation && bookingConfirmation && (
                     <div className="mt-3 p-3 bg-green-50 border border-green-200 rounded">
                       <div className="flex items-center gap-2 text-green-600 font-medium text-sm">
@@ -332,8 +332,8 @@ const EnhancedChatbot = () => {
             ))}
             
             {loading && (
-              <div className="flex justify-start mb-4">
-                <div className="bg-white rounded-lg px-4 py-2 border border-gray-200">
+              <div className="flex justify-start mb-3 md:mb-4">
+                <div className="bg-white rounded-lg px-3 py-2 md:px-4 md:py-2 border border-gray-200">
                   <div className="flex items-center gap-2">
                     <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
                     <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
