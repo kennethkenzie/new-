@@ -29,12 +29,17 @@ const AdminLogin = () => {
       });
 
       console.log('Response status:', response.status);
-      console.log('Response headers:', Object.fromEntries(response.headers.entries()));
+      console.log('Response ok:', response.ok);
       
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
       const responseText = await response.text();
+      console.log('Response text length:', responseText.length);
       console.log('Response text:', responseText);
 
-      if (!responseText) {
+      if (!responseText || responseText.trim() === '') {
         throw new Error('Empty response from server');
       }
 
@@ -43,12 +48,13 @@ const AdminLogin = () => {
         data = JSON.parse(responseText);
       } catch (parseError) {
         console.error('JSON parse error:', parseError);
+        console.error('Response text that failed to parse:', responseText);
         throw new Error('Invalid JSON response from server');
       }
 
       console.log('Response data:', data);
       
-      if (response.ok && data.success) {
+      if (data.success) {
         // Store admin session
         try {
           localStorage.setItem('adminToken', data.token);
@@ -60,10 +66,8 @@ const AdminLogin = () => {
           if (storedToken) {
             console.log('Token verified in localStorage');
             
-            // Small delay to ensure localStorage is updated
-            setTimeout(() => {
-              window.location.href = '/admin/dashboard';
-            }, 100);
+            // Redirect to dashboard
+            window.location.href = '/admin/dashboard';
           } else {
             throw new Error('Failed to store token in localStorage');
           }
@@ -76,7 +80,15 @@ const AdminLogin = () => {
       }
     } catch (error) {
       console.error('Login error:', error);
-      setError('Connection error. Please try again.');
+      if (error.message.includes('Empty response')) {
+        setError('Server returned empty response. Please try again.');
+      } else if (error.message.includes('JSON')) {
+        setError('Invalid server response. Please try again.');
+      } else if (error.message.includes('HTTP error')) {
+        setError('Server error. Please try again.');
+      } else {
+        setError('Connection error. Please try again.');
+      }
     } finally {
       setLoading(false);
     }
