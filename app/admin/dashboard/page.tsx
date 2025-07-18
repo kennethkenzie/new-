@@ -35,9 +35,18 @@ const AdminDashboard = () => {
   useEffect(() => {
     // Check authentication
     const token = localStorage.getItem('adminToken');
+    const userData = localStorage.getItem('adminUser');
+    
+    console.log('Dashboard auth check:', { token: token ? 'exists' : 'missing', userData: userData ? 'exists' : 'missing' });
+    
     if (!token) {
+      console.log('No token found, redirecting to login');
       router.push('/admin');
       return;
+    }
+
+    if (userData) {
+      setUser(JSON.parse(userData));
     }
 
     // Load dashboard data
