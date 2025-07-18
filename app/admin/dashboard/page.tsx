@@ -9,7 +9,7 @@ import {
   Users, 
   DollarSign, 
   TrendingUp, 
-  Hotel, 
+  Home, 
   Star,
   Activity,
   Clock,
