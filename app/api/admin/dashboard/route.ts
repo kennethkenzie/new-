@@ -1,74 +1,119 @@
 import { NextRequest, NextResponse } from 'next/server';
+import connectDB from '../../../../lib/mongodb.js';
+import User from '../../../../models/User.js';
+import Booking from '../../../../models/Booking.js';
+import Room from '../../../../models/Room.js';
+import Message from '../../../../models/Message.js';
+import { verify } from 'jsonwebtoken';
+
+// Verify JWT token
+async function verifyToken(request: NextRequest) {
+  const authHeader = request.headers.get('authorization');
+  if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    return null;
+  }
+
+  const token = authHeader.split(' ')[1];
+  try {
+    const decoded = verify(token, process.env.JWT_SECRET || 'your-secret-key') as any;
+    return decoded;
+  } catch (error) {
+    return null;
+  }
+}
 
 export async function GET(request: NextRequest) {
   try {
-    // Mock dashboard data - in production, this would come from your database
+    await connectDB();
+
+    // Verify authentication
+    const tokenData = await verifyToken(request);
+    if (!tokenData) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
+    // Get current date for filtering
+    const now = new Date();
+    const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const todayEnd = new Date(todayStart.getTime() + 24 * 60 * 60 * 1000);
+
+    // Get statistics
+    const totalBookings = await Booking.countDocuments();
+    const todayBookings = await Booking.countDocuments({
+      createdAt: { $gte: todayStart, $lt: todayEnd }
+    });
+
+    const revenueData = await Booking.aggregate([
+      { $match: { status: { $in: ['confirmed', 'checked-in', 'checked-out'] } } },
+      { $group: { _id: null, total: { $sum: '$totalAmount' } } }
+    ]);
+    const totalRevenue = revenueData[0]?.total || 0;
+
+    const totalRooms = await Room.countDocuments({ isActive: true });
+    const availableRooms = await Room.countDocuments({ status: 'available', isActive: true });
+    const occupancyRate = totalRooms > 0 ? Math.round(((totalRooms - availableRooms) / totalRooms) * 100) : 0;
+
+    const activeChats = await Message.countDocuments({ 
+      status: 'unread',
+      type: 'chat' 
+    });
+
+    // Calculate average rating from reviews
+    const ratingData = await Message.aggregate([
+      { $match: { type: 'review', rating: { $exists: true } } },
+      { $group: { _id: null, avgRating: { $avg: '$rating' } } }
+    ]);
+    const averageRating = ratingData[0]?.avgRating || 4.5;
+
+    // Get recent bookings
+    const recentBookings = await Booking.find()
+      .sort({ createdAt: -1 })
+      .limit(5)
+      .select('bookingId guestName guestEmail roomType checkIn checkOut status totalAmount paymentStatus');
+
+    // Get recent messages
+    const recentMessages = await Message.find()
+      .sort({ createdAt: -1 })
+      .limit(5)
+      .select('type sender subject message status priority createdAt');
+
     const dashboardData = {
       stats: {
-        totalBookings: 156,
-        todayBookings: 8,
-        totalRevenue: 45670,
-        occupancyRate: 78,
-        activeChats: 12,
-        totalRooms: 25,
-        availableRooms: 7,
-        averageRating: 4.6
+        totalBookings,
+        todayBookings,
+        totalRevenue,
+        occupancyRate,
+        activeChats,
+        totalRooms,
+        availableRooms,
+        averageRating: parseFloat(averageRating.toFixed(1))
       },
-      recentBookings: [
-        {
-          id: 1,
-          guestName: 'John Smith',
-          room: 'Executive Suite',
-          checkIn: '2025-01-20',
-          checkOut: '2025-01-23',
-          status: 'confirmed',
-          amount: 1200
-        },
-        {
-          id: 2,
-          guestName: 'Maria Garcia',
-          room: 'Double Room',
-          checkIn: '2025-01-21',
-          checkOut: '2025-01-24',
-          status: 'pending',
-          amount: 850
-        },
-        {
-          id: 3,
-          guestName: 'David Johnson',
-          room: 'Single Room',
-          checkIn: '2025-01-22',
-          checkOut: '2025-01-25',
-          status: 'confirmed',
-          amount: 600
-        }
-      ],
-      recentMessages: [
-        {
-          id: 1,
-          sender: 'Guest Chat',
-          message: 'What time is checkout?',
-          timestamp: new Date(Date.now() - 2 * 60 * 1000).toISOString(),
-          unread: true
-        },
-        {
-          id: 2,
-          sender: 'Sarah M.',
-          message: 'Room service request for room 205',
-          timestamp: new Date(Date.now() - 15 * 60 * 1000).toISOString(),
-          unread: true
-        },
-        {
-          id: 3,
-          sender: 'Front Desk',
-          message: 'New guest arriving early',
-          timestamp: new Date(Date.now() - 60 * 60 * 1000).toISOString(),
-          unread: false
-        }
-      ]
+      recentBookings: recentBookings.map(booking => ({
+        id: booking._id,
+        bookingId: booking.bookingId,
+        guestName: booking.guestName,
+        guestEmail: booking.guestEmail,
+        roomType: booking.roomType,
+        checkIn: booking.checkIn,
+        checkOut: booking.checkOut,
+        status: booking.status,
+        totalAmount: booking.totalAmount,
+        paymentStatus: booking.paymentStatus
+      })),
+      recentMessages: recentMessages.map(message => ({
+        id: message._id,
+        type: message.type,
+        sender: message.sender.name,
+        subject: message.subject,
+        message: message.message.substring(0, 100) + (message.message.length > 100 ? '...' : ''),
+        status: message.status,
+        priority: message.priority,
+        timestamp: message.createdAt
+      }))
     };
 
     return NextResponse.json(dashboardData);
+
   } catch (error) {
     console.error('Dashboard API error:', error);
     return NextResponse.json(
