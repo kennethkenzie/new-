@@ -57,7 +57,7 @@ export async function POST(request: NextRequest) {
     await connectToDatabase();
 
     // Get user details
-    const user = await User.findOne({ id: decoded.userId });
+    const user = await User.findById(decoded.userId);
     if (!user) {
       return NextResponse.json(
         { error: 'User not found' },
