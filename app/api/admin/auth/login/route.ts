@@ -62,6 +62,7 @@ export async function POST(request: NextRequest) {
         userId: user._id,
         username: user.username,
         role: user.role,
+        permissions: user.getPermissions(),
         exp: Math.floor(Date.now() / 1000) + (24 * 60 * 60) // 24 hours
       },
       process.env.JWT_SECRET || 'your-secret-key'
