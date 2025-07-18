@@ -5,19 +5,18 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { 
-  BarChart3, 
+  BarChart, 
   Calendar, 
   MessageSquare, 
   Settings, 
   Users, 
-  Hotel, 
+  Home, 
   Image,
   DollarSign,
   Star,
   Menu,
   X,
   LogOut,
-  Home,
   Edit,
   Package
 } from 'react-feather';
