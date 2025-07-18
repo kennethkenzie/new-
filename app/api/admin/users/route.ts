@@ -46,10 +46,10 @@ export async function POST(request: NextRequest) {
 
     await connectToDatabase();
 
-    const { username, email, password, firstName, lastName, role } = await request.json();
+    const { username, email, password, name, role } = await request.json();
 
     // Validate required fields
-    if (!username || !email || !password || !firstName || !lastName || !role) {
+    if (!username || !email || !password || !name || !role) {
       return NextResponse.json(
         { error: 'All fields are required' },
         { status: 400 }
@@ -57,7 +57,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Validate role
-    const validRoles = ['admin', 'manager', 'receptionist'];
+    const validRoles = ['admin', 'manager', 'staff', 'guest'];
     if (!validRoles.includes(role)) {
       return NextResponse.json(
         { error: 'Invalid role' },
@@ -82,8 +82,7 @@ export async function POST(request: NextRequest) {
       username,
       email,
       password,
-      firstName,
-      lastName,
+      name,
       role,
       isActive: true
     });
@@ -94,11 +93,10 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       message: 'User created successfully',
       user: {
-        id: newUser.id,
+        id: newUser._id,
         username: newUser.username,
         email: newUser.email,
-        firstName: newUser.firstName,
-        lastName: newUser.lastName,
+        name: newUser.name,
         role: newUser.role,
         permissions: newUser.getPermissions(),
         isActive: newUser.isActive,
