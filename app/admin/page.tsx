@@ -19,6 +19,8 @@ const AdminLogin = () => {
     setLoading(true);
     setError('');
 
+    console.log('Login attempt with:', { username: credentials.username, password: credentials.password ? '***' : 'empty' });
+
     try {
       const response = await fetch('/api/admin/auth/login', {
         method: 'POST',
@@ -26,7 +28,11 @@ const AdminLogin = () => {
         body: JSON.stringify(credentials)
       });
 
+      console.log('Response status:', response.status);
+      console.log('Response headers:', response.headers);
+
       const data = await response.json();
+      console.log('Response data:', data);
       
       if (response.ok) {
         // Store admin session
@@ -39,6 +45,7 @@ const AdminLogin = () => {
         setError(data.error || 'Login failed');
       }
     } catch (error) {
+      console.error('Login error:', error);
       setError('Connection error. Please try again.');
     } finally {
       setLoading(false);
