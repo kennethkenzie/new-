@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { sign } from 'jsonwebtoken';
-import connectDB from '../../../../lib/mongodb';
-import User from '../../../../models/User';
+import { connectToDatabase } from '../../../../../lib/mongodb';
+import User from '../../../../../models/User';
 
 export async function POST(request: NextRequest) {
   try {
