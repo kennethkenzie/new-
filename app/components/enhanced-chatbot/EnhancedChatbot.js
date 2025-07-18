@@ -227,19 +227,19 @@ const EnhancedChatbot = () => {
 
   return (
     <>
-      {/* Floating Chat Button */}
-      <div className="fixed bottom-5 right-5 z-50">
+      {/* Floating Chat Button - Mobile Responsive */}
+      <div className="fixed bottom-5 right-5 z-50 md:bottom-5 md:right-5">
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="bg-[#C46A26] hover:bg-[#A85B1F] text-white rounded-full p-4 shadow-lg transition-all duration-300 transform hover:scale-105"
+          className="bg-[#C46A26] hover:bg-[#A85B1F] text-white rounded-full p-3 md:p-4 shadow-lg transition-all duration-300 transform hover:scale-105 touch-manipulation"
         >
-          <MessageCircle size={24} />
+          <MessageCircle size={20} className="md:w-6 md:h-6" />
         </button>
       </div>
 
-      {/* Enhanced Chatbot Window */}
+      {/* Enhanced Chatbot Window - Mobile Responsive */}
       {isOpen && (
-        <div className="fixed bottom-20 right-5 w-96 h-[600px] bg-white rounded-lg shadow-2xl flex flex-col overflow-hidden z-50 border border-gray-200">
+        <div className="fixed inset-0 md:bottom-20 md:right-5 md:inset-auto md:w-96 md:h-[600px] bg-white md:rounded-lg shadow-2xl flex flex-col overflow-hidden z-50 border-0 md:border border-gray-200">
           {/* Chat Header */}
           <div className="bg-gradient-to-r from-[#4A3F36] to-[#C46A26] text-white p-4 flex justify-between items-center">
             <div className="flex items-center">
