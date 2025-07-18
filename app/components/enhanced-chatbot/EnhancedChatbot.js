@@ -346,43 +346,43 @@ const EnhancedChatbot = () => {
             <div ref={messagesEndRef} />
           </div>
 
-          {/* Booking Form Modal */}
+          {/* Booking Form Modal - Mobile Responsive */}
           {showBookingForm && (
             <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
-              <div className="bg-white rounded-lg p-6 w-full max-w-md">
+              <div className="bg-white rounded-lg p-4 md:p-6 w-full max-w-md max-h-[90vh] overflow-y-auto">
                 <h3 className="text-lg font-semibold mb-4">Book Your Room</h3>
                 
                 <div className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-medium mb-1">Check-in</label>
+                      <label className="block text-sm font-medium mb-2">Check-in</label>
                       <input
                         type="date"
                         value={bookingData.checkIn}
                         min={getMinDate()}
                         onChange={(e) => setBookingData({...bookingData, checkIn: e.target.value})}
-                        className="w-full p-2 border rounded text-sm"
+                        className="w-full p-3 md:p-2 border rounded text-sm touch-manipulation"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium mb-1">Check-out</label>
+                      <label className="block text-sm font-medium mb-2">Check-out</label>
                       <input
                         type="date"
                         value={bookingData.checkOut}
                         min={getMinCheckOutDate()}
                         onChange={(e) => setBookingData({...bookingData, checkOut: e.target.value})}
-                        className="w-full p-2 border rounded text-sm"
+                        className="w-full p-3 md:p-2 border rounded text-sm touch-manipulation"
                       />
                     </div>
                   </div>
                   
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-medium mb-1">Adults</label>
+                      <label className="block text-sm font-medium mb-2">Adults</label>
                       <select
                         value={bookingData.adults}
                         onChange={(e) => setBookingData({...bookingData, adults: parseInt(e.target.value)})}
-                        className="w-full p-2 border rounded text-sm"
+                        className="w-full p-3 md:p-2 border rounded text-sm touch-manipulation"
                       >
                         {[1,2,3,4].map(num => (
                           <option key={num} value={num}>{num}</option>
@@ -390,11 +390,11 @@ const EnhancedChatbot = () => {
                       </select>
                     </div>
                     <div>
-                      <label className="block text-sm font-medium mb-1">Children</label>
+                      <label className="block text-sm font-medium mb-2">Children</label>
                       <select
                         value={bookingData.children}
                         onChange={(e) => setBookingData({...bookingData, children: parseInt(e.target.value)})}
-                        className="w-full p-2 border rounded text-sm"
+                        className="w-full p-3 md:p-2 border rounded text-sm touch-manipulation"
                       >
                         {[0,1,2,3,4].map(num => (
                           <option key={num} value={num}>{num}</option>
@@ -404,11 +404,11 @@ const EnhancedChatbot = () => {
                   </div>
                   
                   <div>
-                    <label className="block text-sm font-medium mb-1">Room Type</label>
+                    <label className="block text-sm font-medium mb-2">Room Type</label>
                     <select
                       value={bookingData.roomType}
                       onChange={(e) => setBookingData({...bookingData, roomType: e.target.value})}
-                      className="w-full p-2 border rounded text-sm"
+                      className="w-full p-3 md:p-2 border rounded text-sm touch-manipulation"
                     >
                       <option value="double">Double Room - $278/night</option>
                       <option value="twin">Twin Suite - $499/night</option>
@@ -417,17 +417,17 @@ const EnhancedChatbot = () => {
                   </div>
                 </div>
                 
-                <div className="flex gap-2 mt-6">
+                <div className="flex flex-col md:flex-row gap-3 mt-6">
                   <button
                     onClick={() => setShowBookingForm(false)}
-                    className="flex-1 px-4 py-2 border border-gray-300 rounded hover:bg-gray-50 text-sm"
+                    className="flex-1 px-4 py-3 md:py-2 border border-gray-300 rounded hover:bg-gray-50 text-sm touch-manipulation"
                   >
                     Cancel
                   </button>
                   <button
                     onClick={handleBooking}
                     disabled={loading}
-                    className="flex-1 px-4 py-2 bg-[#C46A26] text-white rounded hover:bg-[#A85B1F] disabled:opacity-50 text-sm"
+                    className="flex-1 px-4 py-3 md:py-2 bg-[#C46A26] text-white rounded hover:bg-[#A85B1F] disabled:opacity-50 text-sm touch-manipulation"
                   >
                     {loading ? 'Booking...' : 'Book Now'}
                   </button>
