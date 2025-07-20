@@ -49,17 +49,15 @@ const DashboardLayout = ({ children }) => {
   };
 
   const navigation = [
-    { name: 'Dashboard', href: '/admin/dashboard', icon: BarChart },
-    { name: 'Bookings', href: '/admin/bookings', icon: Calendar },
-    { name: 'Rooms', href: '/admin/rooms', icon: Home },
-    { name: 'Messages', href: '/admin/messages', icon: MessageSquare },
-    { name: 'Content', href: '/admin/content', icon: Edit },
-    { name: 'Amenities', href: '/admin/amenities', icon: Package },
-    { name: 'Gallery', href: '/admin/gallery', icon: Image },
-    { name: 'Reviews', href: '/admin/reviews', icon: Star },
-    { name: 'Pricing', href: '/admin/pricing', icon: DollarSign },
-    { name: 'Staff', href: '/admin/staff', icon: Users },
-    { name: 'Settings', href: '/admin/settings', icon: Settings },
+    { name: 'Dashboard', href: '/admin/dashboard', icon: BarChart, permission: 'dashboard_access' },
+    { name: 'Users', href: '/admin/users', icon: Users, permission: 'user_management' },
+    { name: 'Files', href: '/admin/files', icon: Image, permission: 'file_management' },
+    { name: 'Analytics', href: '/admin/analytics', icon: BarChart, permission: 'dashboard_access' },
+    { name: 'Bookings', href: '/admin/bookings', icon: Calendar, permission: 'booking_management' },
+    { name: 'Rooms', href: '/admin/rooms', icon: Home, permission: 'room_management' },
+    { name: 'Messages', href: '/admin/messages', icon: MessageSquare, permission: 'message_management' },
+    { name: 'Content', href: '/admin/content', icon: Edit, permission: 'content_management' },
+    { name: 'Settings', href: '/admin/settings', icon: Settings, permission: 'dashboard_access' },
   ];
 
   const isActive = (href) => {
