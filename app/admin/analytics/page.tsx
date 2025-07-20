@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import DashboardLayout from '../../../components/admin/DashboardLayout'
-import Analytics from '../../../components/admin/Analytics'
+import DashboardLayout from '../components/DashboardLayout'
+import Analytics from '../../components/admin/Analytics'
 
 export default function AnalyticsPage() {
   const [user, setUser] = useState(null)
