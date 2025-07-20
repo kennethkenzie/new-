@@ -57,6 +57,11 @@ const AdminLogin = () => {
       if (data.success) {
         // Store admin session
         try {
+          // Store authentication data
+          localStorage.setItem('authToken', data.token);
+          localStorage.setItem('user', JSON.stringify(data.user));
+          
+          // Also store with admin prefix for compatibility with existing layout
           localStorage.setItem('adminToken', data.token);
           localStorage.setItem('adminUser', JSON.stringify(data.user));
           console.log('Token stored successfully');
