@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import DashboardLayout from '../../../components/admin/DashboardLayout'
-import FileManagement from '../../../components/admin/FileManagement'
+import DashboardLayout from '../components/DashboardLayout'
+import FileManagement from '../../components/admin/FileManagement'
 
 export default function FilesPage() {
   const [user, setUser] = useState(null)
