@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import DashboardLayout from '../../../components/admin/DashboardLayout'
-import UserManagement from '../../../components/admin/UserManagement'
+import DashboardLayout from '../components/DashboardLayout'
+import UserManagement from '../../components/admin/UserManagement'
 
 export default function UsersPage() {
   const [user, setUser] = useState(null)
